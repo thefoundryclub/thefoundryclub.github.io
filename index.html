@@ -45,11 +45,11 @@
     }
 
     .info-box {
-      display: inline-block;
+      display: block;
+      width: fit-content;
+      margin: 40px auto; /* centra y agrega espacio arriba y abajo */
       padding: 15px 25px;
       border-radius: 10px;
-      margin-top: 40px;
-      margin-bottom: 40px;
     }
 
     .info-box p {
@@ -65,8 +65,10 @@
     }
 
     form {
-      margin-top: 30px;
-      display: inline-block;
+      display: block;
+      width: 90%;
+      max-width: 400px;
+      margin: 30px auto;
       text-align: left;
       background: rgba(0, 0, 0, 0.6);
       padding: 20px;
@@ -127,11 +129,18 @@
       opacity: 0.9;
     }
 
+    footer a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       h2 { font-size: 1.5rem; }
       .info-box p { font-size: 1rem; }
       .info-box-lineup p { font-size: 1.2rem; }
+      footer { font-size: 1.2rem; }
     }
   </style>
 </head>
@@ -178,7 +187,7 @@
   </form>
 
   <footer>
-    <p>Instagram: <a href="https://instagram.com/fierrorecords" target="_blank" style="color:white; text-decoration:none;">@fierrorecords</a></p>
+    <p>Instagram: <a href="https://instagram.com/fierrorecords" target="_blank">@fierrorecords</a></p>
   </footer>
 
   <script>
@@ -221,3 +230,4 @@
   </script>
 </body>
 </html>
+

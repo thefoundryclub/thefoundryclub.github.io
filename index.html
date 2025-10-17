@@ -37,41 +37,41 @@
     }
 
     h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2rem; /* más grande que antes, menos que h1 */
+      font-family: 'Orbitron', sans-serif; /* misma tipografía que h1 */
+      font-size: 2rem;
       color: black;
       -webkit-text-stroke: 1px white; /* borde blanco sólido */
       font-weight: 600;
       border-radius: 8px;
-      margin-top: 5px; /* menos espacio con el h1 */
-      margin-bottom: 25px;
+      margin-top: 5px; /* menos espacio con h1 */
+      margin-bottom: 20px;
       display: inline-block;
       padding: 0 6px;
     }
 
     .info-box {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
 
     .info-box p {
       font-size: 1.1rem;
       margin: 6px 0;
-      line-height: 1.6; /* un poco más separado */
+      line-height: 1.6;
     }
 
     .lineup {
       font-family: 'Orbitron', sans-serif;
-      margin-top: 10px;
+      margin-top: 15px; /* más espacio desde la hora */
       letter-spacing: 2px;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
     }
 
     form {
       text-align: left;
       padding: 25px;
       border-radius: 12px;
-      width: 350px; /* un poco más ancho para el mensaje */
+      width: 350px;
       max-width: 90%;
     }
 
@@ -118,9 +118,11 @@
       font-size: 0.95rem;
       color: #ff8080;
       text-align: center;
-      line-height: 1.5;
+      line-height: 1.6;
       width: 100%;
-      max-width: 350px; /* más ancho, legible en celular */
+      max-width: 400px; /* más ancho para que se vea menos comprimido */
+      margin-left: auto;
+      margin-right: auto;
     }
 
     footer {
@@ -134,9 +136,9 @@
       h1 { font-size: 2rem; }
       h2 { font-size: 1.5rem; }
       .info-box p { font-size: 1rem; }
-      .lineup { font-size: 1rem; }
+      .lineup { font-size: 1rem; margin-top: 10px; }
       form { width: 90%; }
-      .warning { max-width: 90%; font-size: 0.9rem; }
+      .warning { max-width: 90%; font-size: 0.9rem; line-height: 1.5; }
     }
   </style>
 </head>
@@ -145,8 +147,8 @@
   <h2>by Fierro Records</h2>
 
   <div class="info-box">
-    <p>📍 SECRET LOCATION <p>
-    <p>📍 San Andrés, San Martín (a 2 cuadras del túnel)</p>
+    </p>📍 SECRET LOCATION </p> 
+    </p>📍San Andrés, San Martín (a 2 cuadras del túnel)</p>
     <p>🗓️ Viernes 24 de Octubre</p>
     <p>🕚 23:00 a 05:00 hs (Ingreso hasta la 1:00 AM)</p>
     <p class="lineup"><strong>LINE UP:</strong> F.I.E.R.A. (live) &nbsp;·&nbsp; DIEGO AMARO &nbsp;·&nbsp; ENEB</p>
@@ -173,7 +175,10 @@
 
     <button type="submit">Comprar Entradas</button>
 
-    <p class="warning">⚠️ El ingreso al evento será válido solo una vez confirmada la transferencia por Mercado Pago.<br>📍 La dirección exacta se enviará por correo una vez abonada la entrada.</p>
+    <p class="warning">
+      ⚠️ El ingreso al evento será válido solo una vez confirmada la transferencia por Mercado Pago.<br>
+      📍 La dirección exacta se enviará por correo una vez abonada la entrada.
+    </p>
   </form>
 
   <footer>
@@ -220,4 +225,3 @@
   </script>
 </body>
 </html>
-

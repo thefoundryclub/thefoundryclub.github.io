@@ -40,17 +40,22 @@
       margin: 5px 0 20px 0;
     }
 
-    .info-box p {
+    .info-box {
+      font-family: 'Montserrat', sans-serif;
       font-size: 1.2rem;
-      margin: 8px 0;
       line-height: 1.6;
+      margin-top: 15px;
     }
 
-    .lineup {
-      font-family: 'Montserrat', sans-serif;
-      margin-top: 15px;
-      font-size: 1.2rem;
-      letter-spacing: 1px;
+    .info-box p {
+      margin: 6px 0;
+    }
+
+    .lineup-box {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.6rem;
+      margin-top: 25px;
+      letter-spacing: 2px;
     }
 
     form {
@@ -121,8 +126,8 @@
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       h2 { font-size: 1.5rem; }
-      .info-box p { font-size: 1rem; }
-      .lineup { font-size: 1rem; }
+      .info-box { font-size: 1rem; }
+      .lineup-box { font-size: 1.3rem; }
       form { width: 95%; }
     }
   </style>
@@ -136,7 +141,10 @@
     <p>📍 San Andrés, San Martín (a 2 cuadras del túnel)</p>
     <p>🗓️ Viernes 24 de Octubre</p>
     <p>🕚 23:00 a 05:00 hs (Ingreso hasta las 1:00 AM)</p>
-    <p class="lineup"><strong>LINE UP:</strong> F.I.E.R.A. (live) &nbsp;·&nbsp; DIEGO AMARO &nbsp;·&nbsp; ENEB</p>
+  </div>
+
+  <div class="lineup-box">
+    <p><strong>LINE UP:</strong> F.I.E.R.A. (live) &nbsp;·&nbsp; DIEGO AMARO &nbsp;·&nbsp; ENEB</p>
   </div>
 
   <form id="ticketForm" action="https://formspree.io/f/mvgwlaoy" method="POST">
@@ -218,5 +226,6 @@
   </script>
 </body>
 </html>
+
 
 

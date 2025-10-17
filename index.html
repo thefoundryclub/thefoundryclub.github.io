@@ -92,6 +92,12 @@
       background-color: #999;
     }
 
+    .total {
+      font-weight: bold;
+      margin: 5px 0;
+      text-align: center;
+    }
+
     @media (max-width: 600px) {
       h1 { font-size: 2.5rem; }
       h2 { font-size: 1.3rem; }
@@ -99,6 +105,7 @@
       form { width: 90%; }
       .button { width: 80%; }
     }
+
   </style>
 </head>
 <body>
@@ -111,10 +118,7 @@
     <p>🎵 Line Up: F.I.E.R.A. (Live) | Diego Amaro | ENEB</p>
   </div>
 
-  <!-- Formulario Formspree -->
   <form action="https://formspree.io/f/mvgwlaoy" method="POST">
-    <input type="text" name="comprador" placeholder="Nombre del comprador" required>
-
     <label for="cantidad">Cantidad de entradas:</label>
     <select name="cantidad" id="cantidad" required>
       <option value="">Selecciona</option>
@@ -130,7 +134,9 @@
       <option value="10">10</option>
     </select>
 
-    <!-- Aquí se generan los inputs dinámicos con JS -->
+    <div class="total" id="total"></div>
+
+    <!-- Inputs dinámicos para nombres de asistentes -->
     <div id="asistentes"></div>
 
     <button type="submit">Enviar y pagar</button>
@@ -144,10 +150,18 @@
   <script>
     const cantidadSelect = document.getElementById('cantidad');
     const asistentesDiv = document.getElementById('asistentes');
+    const totalDiv = document.getElementById('total');
+    const precioEntrada = 6500;
 
     cantidadSelect.addEventListener('change', () => {
-      asistentesDiv.innerHTML = ''; // Limpiar inputs previos
+      asistentesDiv.innerHTML = '';
+      totalDiv.innerHTML = '';
+
       const cantidad = parseInt(cantidadSelect.value);
+      if (!cantidad) return;
+
+      totalDiv.textContent = `Monto total: $${cantidad * precioEntrada}`;
+
       for (let i = 1; i <= cantidad; i++) {
         const input = document.createElement('input');
         input.type = 'text';

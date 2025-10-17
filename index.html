@@ -16,9 +16,9 @@
       color: white;
       text-align: center;
       font-family: 'Montserrat', sans-serif;
-      animation: flash 8s infinite ease-in-out;
       margin: 0;
-      padding: 0 0 80px 0; /* Espacio extra al final para footer */
+      padding: 0;
+      animation: flash 8s infinite ease-in-out;
     }
 
     @keyframes flash {
@@ -48,29 +48,28 @@
       display: block;
       padding: 15px 25px;
       border-radius: 10px;
-      margin: 40px auto;
+      margin-top: 40px;
+      margin-bottom: 40px;
     }
 
     .info-box p {
       font-size: 1.1rem;
       margin: 5px 0;
       line-height: 1.5;
-      white-space: nowrap; /* evita que se rompa en varias líneas */
-      overflow: hidden;
-      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .info-box-lineup {
       display: block;
-      margin: 40px auto;
+      margin-top: 40px;
+      margin-bottom: 40px;
     }
 
     .info-box-lineup p {
       font-family: 'Orbitron', sans-serif;
       font-size: 1.5rem;
       letter-spacing: 2px;
-      white-space: normal; /* que pueda ocupar varias líneas si hace falta */
-      margin: 20px 0;
+      white-space: normal;
     }
 
     form {
@@ -131,14 +130,10 @@
     }
 
     footer {
-      margin-top: 40px;
-      font-size: 1.8rem; /* más grande para Instagram */
+      margin-top: 60px;
+      font-size: 1.8rem;
       opacity: 0.9;
-    }
-
-    footer a {
-      color: white;
-      text-decoration: none;
+      margin-bottom: 40px;
     }
 
     @media (max-width: 600px) {
@@ -165,7 +160,7 @@
     <p><strong>LINE UP:</strong> F.I.E.R.A. (live) · DIEGO AMARO · ENEB</p>
   </div>
 
-  <form id="ticketForm" action="https://formspree.io/f/mvgwlaoy" method="POST">
+  <form id="ticketForm" action="https://formspree.io/f/xdkwblbq" method="POST">
     <label for="name">Nombre y Apellido del comprador:</label>
     <input type="text" id="name" name="name" required>
 
@@ -193,7 +188,7 @@
   </form>
 
   <footer>
-    <p>Instagram: <a href="https://instagram.com/fierrorecords" target="_blank">@fierrorecords</a></p>
+    <p>Instagram: <a href="https://instagram.com/fierrorecords" target="_blank" style="color:white; text-decoration:none;">@fierrorecords</a></p>
   </footer>
 
   <script>
@@ -224,11 +219,11 @@
       const formData = new FormData(form);
 
       fetch(form.action, { method: form.method, body: formData })
-        .then(() => {
-          if (precio) {
-            window.location.href = precio.link;
+        .then(response => {
+          if (response.ok) {
+            if (precio) window.location.href = precio.link;
           } else {
-            alert('Seleccioná la cantidad de entradas.');
+            alert('Error al enviar el formulario.');
           }
         })
         .catch(() => alert('Error al enviar el formulario.'));

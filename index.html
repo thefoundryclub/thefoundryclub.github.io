@@ -3,187 +3,202 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FIERRO RECORDS - Techno Night</title>
+  <title>The Foundry Club by Fierro Records</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap');
+
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
+      padding: 0;
       color: white;
-      text-align: center;
-      background: url('https://raw.githubusercontent.com/TU-USUARIO/TU-REPO/main/fondoweb.jpg') no-repeat center center fixed;
+      font-family: 'Roboto', sans-serif;
+      background: url('fondowebvidrio.jpg') no-repeat center center fixed;
       background-size: cover;
-      position: relative;
+      text-align: center;
+      overflow-x: hidden;
     }
 
-    /* Oscurecer el fondo para mejorar contraste del texto */
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
-      z-index: 0;
-    }
-
-    .container {
-      position: relative;
-      z-index: 1;
-      padding: 30px;
-      max-width: 600px;
-      margin: auto;
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      padding: 40px 20px;
     }
 
     h1 {
-      font-size: 2.5em;
-      text-transform: uppercase;
-      margin-bottom: 0.3em;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      margin: 0;
+      animation: flash 2s infinite alternate;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      color: white;
+      margin-top: 8px;
       letter-spacing: 2px;
-      animation: flash 1s infinite alternate;
+      text-shadow: 1px 1px 2px #000;
     }
 
     @keyframes flash {
-      from { text-shadow: 0 0 10px #fff, 0 0 20px #ff00aa; }
-      to { text-shadow: 0 0 20px #ff00aa, 0 0 40px #fff; }
+      from { text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff; }
+      to { text-shadow: 0 0 30px #00ffff, 0 0 60px #00ffff; }
     }
 
     p {
-      font-size: 1.1em;
-      margin: 8px 0;
-    }
-
-    form {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 20px;
+      margin: 12px 0;
+      font-size: 1rem;
     }
 
     label {
       display: block;
-      margin-top: 10px;
+      margin-top: 15px;
       font-weight: bold;
     }
 
     input, select {
-      width: 90%;
-      padding: 8px;
       margin-top: 5px;
-      border-radius: 5px;
+      padding: 8px;
+      width: 80%;
+      max-width: 300px;
       border: none;
-      font-size: 1em;
+      border-radius: 4px;
+      font-size: 1rem;
     }
 
     button {
-      background-color: #ff0077;
-      color: white;
+      background-color: #00ffff;
+      color: black;
+      font-weight: bold;
       border: none;
-      padding: 12px 20px;
-      font-size: 1em;
-      margin-top: 15px;
-      border-radius: 8px;
+      padding: 12px 24px;
+      border-radius: 6px;
+      margin-top: 20px;
       cursor: pointer;
-      transition: 0.3s;
+      font-size: 1rem;
+      transition: background 0.3s;
     }
 
     button:hover {
-      background-color: #ff3399;
+      background-color: #ffffff;
     }
 
-    .warning {
-      font-size: 0.9em;
-      color: #ffcc00;
-      margin-top: 10px;
+    .asistente-input {
+      margin-top: 8px;
+      display: block;
+    }
+
+    .total {
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 1.1rem;
     }
 
     footer {
       margin-top: 40px;
-      font-size: 0.9em;
+      font-size: 0.9rem;
+      opacity: 0.9;
     }
 
     a {
-      color: #ff99cc;
+      color: #00ffff;
       text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>FIERRO RECORDS PRESENTA</h1>
-    <p>📍 San Andrés, San Martín (a 2 cuadras del túnel) - Viernes 24 de Octubre</p>
+  <div class="overlay">
+    <h1>THE FOUNDRY CLUB</h1>
+    <h2>by Fierro Records</h2>
+
+    <p>📍 San Andrés, San Martín (a 2 cuadras del túnel)</p>
+    <p>🗓️ Viernes 24 de Octubre</p>
     <p>🕚 23:00 a 05:00 hs (Ingreso hasta las 2:00 AM)</p>
-    <p>LINE UP: F.I.E.R.A. (live) · DIEGO AMARO · ENEB</p>
 
-    <form id="ticketForm">
-      <label>Nombre y Apellido del Comprador:</label>
-      <input type="text" name="nombre" required placeholder="Tu nombre completo">
+    <p><strong>LINE UP:</strong> F.I.E.R.A. (LIVE) · DIEGO AMARO · ENEB</p>
 
-      <label>Email de contacto:</label>
-      <input type="email" name="email" required placeholder="tucorreo@ejemplo.com">
+    <form id="ticketForm" action="https://formspree.io/f/mvgwlaoy" method="POST">
+      <label for="nombre">Nombre y apellido del comprador:</label>
+      <input type="text" id="nombre" name="nombre" required>
 
-      <label>Cantidad de Entradas:</label>
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="cantidad">Cantidad de entradas:</label>
       <select id="cantidad" name="cantidad" required>
-        <option value="">Seleccionar...</option>
-        <option value="1">1 entrada - $7.000</option>
-        <option value="2">2 entradas - $14.000</option>
-        <option value="3">3 entradas - $21.000</option>
+        <option value="">Seleccionar</option>
+        <option value="1">1 entrada</option>
+        <option value="2">2 entradas</option>
+        <option value="3">3 entradas</option>
       </select>
 
-      <p id="detalleMonto"></p>
+      <div id="asistentes"></div>
 
-      <button type="submit">Comprar Entradas</button>
+      <div class="total" id="resumen"></div>
 
-      <p class="warning">
-        ⚠️ El ingreso será confirmado únicamente una vez realizado el pago.<br>
-        La dirección exacta del evento será enviada luego de abonar.
-      </p>
+      <button type="submit">Enviar datos</button>
     </form>
 
+    <div id="pago" style="margin-top: 20px;"></div>
+
     <footer>
-      <p>Seguinos en <a href="https://www.instagram.com/fierrorecords/" target="_blank">@fierrorecords</a></p>
+      ⚠️ El ingreso será válido solo una vez realizado el pago.  
+      La dirección exacta se enviará una vez abonado el evento.<br><br>
+      📲 Instagram: <a href="https://instagram.com/fierrorecords" target="_blank">@fierrorecords</a>
     </footer>
   </div>
 
   <script>
     const form = document.getElementById('ticketForm');
     const cantidadSelect = document.getElementById('cantidad');
-    const detalleMonto = document.getElementById('detalleMonto');
-    const formspreeURL = 'https://formspree.io/f/mvgwlaoy';
+    const asistentesDiv = document.getElementById('asistentes');
+    const resumenDiv = document.getElementById('resumen');
+    const pagoDiv = document.getElementById('pago');
 
     cantidadSelect.addEventListener('change', () => {
       const cantidad = parseInt(cantidadSelect.value);
-      const precio = 7000;
-      if (cantidad) {
-        detalleMonto.textContent = `${cantidad} x $${precio.toLocaleString()} = Total: $${(cantidad * precio).toLocaleString()}`;
-      } else {
-        detalleMonto.textContent = '';
+      asistentesDiv.innerHTML = '';
+      resumenDiv.innerHTML = '';
+      pagoDiv.innerHTML = '';
+
+      if (cantidad > 0) {
+        for (let i = 1; i <= cantidad; i++) {
+          const input = document.createElement('input');
+          input.className = 'asistente-input';
+          input.type = 'text';
+          input.name = `asistente_${i}`;
+          input.placeholder = `Nombre del asistente ${i}`;
+          input.required = true;
+          asistentesDiv.appendChild(input);
+        }
+
+        const precio = 7000;
+        const total = cantidad * precio;
+        resumenDiv.innerHTML = `💵 ${cantidad} x $${precio} = <strong>$${total}</strong>`;
+
+        let linkPago = '';
+        if (cantidad === 1) linkPago = 'https://mpago.la/2h7gDBs';
+        else if (cantidad === 2) linkPago = 'https://mpago.la/21WB1Uv';
+        else if (cantidad === 3) linkPago = 'https://mpago.la/1m2YvXb';
+
+        pagoDiv.innerHTML = `<a href="${linkPago}" target="_blank"><button type="button">Pagar con Mercado Pago</button></a>`;
       }
     });
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const data = new FormData(form);
-      const cantidad = parseInt(data.get('cantidad'));
-
-      // Enviar datos a Formspree
-      await fetch(formspreeURL, {
+      const formData = new FormData(form);
+      await fetch(form.action, {
         method: 'POST',
-        body: data,
+        body: formData,
         headers: { 'Accept': 'application/json' }
       });
-
-      // Redirigir al link de pago correspondiente
-      const links = {
-        1: 'https://mpago.la/2h7gDBs',
-        2: 'https://mpago.la/21WB1Uv',
-        3: 'https://mpago.la/1m2YvXb'
-      };
-      if (links[cantidad]) {
-        window.location.href = links[cantidad];
-      } else {
-        alert('Por favor seleccioná una cantidad válida.');
-      }
+      alert('Datos enviados correctamente. Ahora podés proceder al pago.');
     });
   </script>
 </body>
 </html>
-

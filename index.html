@@ -1,147 +1,105 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>THE FOUNDRY CLUB - Fierro Records</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Montserrat:wght@400;600&display=swap');
-    body {
-      background-image: url('fondowebvidrio.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-      color: white;
-      text-align: center;
-      font-family: 'Montserrat', sans-serif;
-      margin: 0;
-      padding: 0;
-      padding-bottom: 120px;
-      animation: flash 8s infinite ease-in-out;
-    }
-    @keyframes flash {
-      0%, 100% { filter: brightness(1); }
-      50% { filter: brightness(1.3); }
-    }
-    h1 { font-family: 'Orbitron', sans-serif; font-size: 3rem; margin-top: 80px; letter-spacing: 3px; }
-    h2 { font-family: 'Orbitron', sans-serif; font-size: 2rem; color: black; -webkit-text-stroke: 1px white; text-stroke: 1px white; font-weight: 600; margin-top: 10px; letter-spacing: 2px; }
-
-    .info-box { display: block; padding: 15px 25px; border-radius: 10px; margin: 40px auto; text-align: center; }
-    .info-box p { font-size: 1.1rem; margin: 5px 0; line-height: 1.5; white-space: nowrap; }
-    .info-box-lineup { text-align: center; margin: 20px 0; }
-    .info-box-lineup p { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; letter-spacing: 2px; margin: 5px 0; line-height: 1.5; white-space: normal; }
-
-    form { margin-top: 30px; display: inline-block; text-align: left; background: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(255,255,255,0.2); }
-    label { display: block; margin-top: 10px; font-weight: 600; }
-    input, select { width: 100%; padding: 8px; margin-top: 5px; border: none; border-radius: 5px; }
-    button { background-color: white; color: black; font-weight: bold; padding: 10px 20px; border: none; border-radius: 5px; margin-top: 20px; cursor: pointer; transition: 0.3s; width: 100%; }
-    button:hover { background-color: #ff0099; color: white; }
-
-    .total { font-weight: bold; margin-top: 15px; font-size: 1.2rem; text-align: center; }
-    .warning { margin-top: 20px; font-size: 0.95rem; color: #ff8080; text-align: center; line-height: 1.4; }
-    footer { margin-top: 60px; font-size: 1.8rem; opacity: 0.9; }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2rem; }
-      h2 { font-size: 1.5rem; }
-      .info-box p { font-size: 1rem; white-space: normal; }
-      .info-box-lineup p { font-size: 1.2rem; white-space: normal; }
-      footer { font-size: 1.5rem; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>THE FOUNDRY CLUB - Fierro Records</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Montserrat:wght@400;600&display=swap');
+  body { background-image: url('fondowebvidrio.jpg'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat; color: white; text-align: center; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; padding-bottom: 120px; }
+  h1 { font-family: 'Orbitron', sans-serif; font-size: 3rem; margin-top: 80px; letter-spacing: 3px; }
+  h2 { font-family: 'Orbitron', sans-serif; font-size: 2rem; color: black; -webkit-text-stroke: 1px white; text-stroke: 1px white; font-weight: 600; margin-top: 10px; letter-spacing: 2px; }
+  .info-box { display: block; padding: 15px 25px; border-radius: 10px; margin: 40px auto; text-align: center; }
+  .info-box p { font-size: 1.1rem; margin: 5px 0; line-height: 1.5; white-space: nowrap; }
+  .info-box-lineup { text-align: center; margin: 20px 0; }
+  .info-box-lineup p { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; letter-spacing: 2px; margin: 5px 0; line-height: 1.5; white-space: normal; }
+  form { margin-top: 30px; display: inline-block; text-align: left; background: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(255,255,255,0.2); }
+  label { display: block; margin-top: 10px; font-weight: 600; }
+  input, select { width: 100%; padding: 8px; margin-top: 5px; border: none; border-radius: 5px; }
+  button { background-color: white; color: black; font-weight: bold; padding: 10px 20px; border: none; border-radius: 5px; margin-top: 20px; cursor: pointer; transition: 0.3s; width: 100%; }
+  button:hover { background-color: #ff0099; color: white; }
+  .total { font-weight: bold; margin-top: 15px; font-size: 1.2rem; text-align: center; }
+  .warning { margin-top: 20px; font-size: 0.95rem; color: #ff8080; text-align: center; line-height: 1.4; }
+  footer { margin-top: 60px; font-size: 1.8rem; opacity: 0.9; }
+  @media (max-width: 600px) { h1 { font-size: 2rem; } h2 { font-size: 1.5rem; } .info-box p { font-size: 1rem; white-space: normal; } .info-box-lineup p { font-size: 1.2rem; white-space: normal; } footer { font-size: 1.5rem; } }
+</style>
 </head>
 <body>
-  <h1>THE FOUNDRY CLUB</h1>
-  <h2>by Fierro Records</h2>
 
-  <div class="info-box">
-    <p>📍 SECRET LOCATION</p>
-    <p>📍 San Andrés, San Martín</p>
-    <p>(a 2 cuadras del túnel)</p>
-    <p>🗓️ Viernes 24 de Octubre</p>
-    <p>🕚 23:00 a 05:00 hs</p>
-    <p>(Ingreso hasta la 1:00 AM)</p>
-  </div>
+<h1>THE FOUNDRY CLUB</h1>
+<h2>by Fierro Records</h2>
 
-  <div class="info-box info-box-lineup">
-    <p><strong>LINE UP:</strong> F.I.E.R.A. (live) · DIEGO AMARO · ENEB</p>
-  </div>
+<div class="info-box">
+  <p>📍 SECRET LOCATION</p>
+  <p>📍 San Andrés, San Martín</p>
+  <p>(a 2 cuadras del túnel)</p>
+  <p>🗓️ Viernes 24 de Octubre</p>
+  <p>🕚 23:00 a 05:00 hs</p>
+  <p>(Ingreso hasta la 1:00 AM)</p>
+</div>
 
-  <form id="ticketForm" action="https://formspree.io/f/xdkwblbq" method="POST">
-    <label for="name">Nombre y Apellido del comprador:</label>
-    <input type="text" id="name" name="name" required>
+<div class="info-box info-box-lineup">
+  <p><strong>LINE UP:</strong> F.I.E.R.A. (live) · DIEGO AMARO · ENEB</p>
+</div>
 
-    <label for="email">Correo electrónico:</label>
-    <input type="email" id="email" name="email" required>
+<!-- iframe invisible -->
+<iframe name="iframe_invisible" style="display:none;"></iframe>
 
-    <label for="tickets">Cantidad de entradas:</label>
-    <select id="tickets" name="tickets" required>
-      <option value="" disabled selected>Seleccionar</option>
-      <option value="1">1 entrada</option>
-      <option value="2">2 entradas</option>
-      <option value="3">3 entradas</option>
-    </select>
+<form id="ticketForm" action="https://formspree.io/f/xdkwblbq" method="POST" target="iframe_invisible">
+  <label for="name">Nombre y Apellido del comprador:</label>
+  <input type="text" id="name" name="name" required>
 
-    <div class="total" id="detalle"></div>
+  <label for="email">Correo electrónico:</label>
+  <input type="email" id="email" name="email" required>
 
-    <input type="hidden" name="_subject" value="Nueva compra de entrada - The Foundry Club">
+  <label for="tickets">Cantidad de entradas:</label>
+  <select id="tickets" name="tickets" required>
+    <option value="" disabled selected>Seleccionar</option>
+    <option value="1">1 entrada</option>
+    <option value="2">2 entradas</option>
+    <option value="3">3 entradas</option>
+  </select>
 
-    <button type="submit">Comprar Entradas</button>
+  <div class="total" id="detalle"></div>
+  <input type="hidden" name="_subject" value="Nueva compra de entrada - The Foundry Club">
+  <button type="submit">Comprar Entradas</button>
+  <p class="warning">
+    ⚠️ El ingreso al evento será válido solo una vez confirmada la transferencia por Mercado Pago.<br>
+    📍 La dirección exacta se enviará por correo una vez abonada la entrada.
+  </p>
+</form>
 
-    <p class="warning">
-      ⚠️ El ingreso al evento será válido solo una vez confirmada la transferencia por Mercado Pago.<br>
-      📍 La dirección exacta se enviará por correo una vez abonada la entrada.
-    </p>
-  </form>
+<footer>
+  <p>Instagram: <a href="https://instagram.com/fierrorecords" target="_blank" style="color:white; text-decoration:none;">@fierrorecords</a></p>
+</footer>
 
-  <footer>
-    <p>Instagram: <a href="https://instagram.com/fierrorecords" target="_blank" style="color:white; text-decoration:none;">@fierrorecords</a></p>
-  </footer>
+<script>
+const tickets = document.getElementById('tickets');
+const detalle = document.getElementById('detalle');
+const precios = {
+  1: 'https://mpago.la/2h7gDBs',
+  2: 'https://mpago.la/21WB1Uv',
+  3: 'https://mpago.la/1m2YvXb'
+};
 
-  <script>
-    const form = document.getElementById('ticketForm');
-    const tickets = document.getElementById('tickets');
-    const detalle = document.getElementById('detalle');
+tickets.addEventListener('change', () => {
+  const cantidad = tickets.value;
+  if(cantidad) {
+    detalle.innerHTML = `Cantidad de entradas: ${cantidad} × $7000<br>Monto total: $${7000*cantidad}`;
+  } else { detalle.innerHTML=''; }
+});
 
-    const precios = {
-      1: { total: 7000, link: 'https://mpago.la/2h7gDBs' },
-      2: { total: 14000, link: 'https://mpago.la/21WB1Uv' },
-      3: { total: 21000, link: 'https://mpago.la/1m2YvXb' }
-    };
+document.getElementById('ticketForm').addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const cantidad = tickets.value;
+  if(!cantidad){ alert('Seleccioná la cantidad de entradas'); return; }
+  // enviar a Formspree via iframe
+  e.target.submit();
+  // redirigir a Mercado Pago
+  window.location.href = precios[cantidad];
+});
+</script>
 
-    tickets.addEventListener('change', () => {
-      const cantidad = tickets.value;
-      if (cantidad) {
-        const precio = precios[cantidad];
-        detalle.innerHTML = `Cantidad de entradas: ${cantidad} × $7000<br>Monto total: $${precio.total}`;
-      } else {
-        detalle.innerHTML = '';
-      }
-    });
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const cantidad = tickets.value;
-      if (!cantidad) {
-        alert('Seleccioná la cantidad de entradas.');
-        return;
-      }
-      const precio = precios[cantidad];
-      const formData = new FormData(form);
-
-      fetch(form.action, { method: 'POST', body: formData })
-        .then(response => {
-          if (response.ok) {
-            // Redirige a Mercado Pago
-            window.location.href = precio.link;
-          } else {
-            alert('Error al enviar el formulario.');
-          }
-        })
-        .catch(() => alert('Error al enviar el formulario.'));
-    });
-  </script>
 </body>
 </html>
 

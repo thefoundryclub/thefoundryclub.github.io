@@ -114,13 +114,6 @@
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
     </select>
 
     <div class="total" id="total"></div>
@@ -136,23 +129,32 @@
     const ticketForm = document.getElementById('ticketForm');
     const cantidadSelect = document.getElementById('cantidad');
     const totalDiv = document.getElementById('total');
-    const precioEntrada = 7000;
+    const precios = {1: 7000, 2: 14000, 3: 21000};
+    const linksMP = {
+      1: "https://mpago.la/2h7gDBs",
+      2: "https://mpago.la/21WB1Uv",
+      3: "https://mpago.la/1m2YvXb"
+    };
 
     cantidadSelect.addEventListener('change', () => {
       const cantidad = parseInt(cantidadSelect.value);
-      totalDiv.textContent = cantidad ? `${cantidad} x $${precioEntrada} = Monto total: $${cantidad*precioEntrada}` : '';
+      if(cantidad) {
+        totalDiv.textContent = `${cantidad} x $7000 = Monto total: $${precios[cantidad]}`;
+      } else {
+        totalDiv.textContent = '';
+      }
     });
 
     ticketForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const cantidad = parseInt(cantidadSelect.value);
-      const total = cantidad * precioEntrada;
 
-      // Abrir link de Mercado Pago con monto dinámico
-      const mpLink = `https://link.mercadopago.com.ar/thefoundryclub?amount=${total}`;
-      window.open(mpLink, '_blank');
+      // Abrir link de Mercado Pago según cantidad
+      if(cantidad && linksMP[cantidad]) {
+        window.open(linksMP[cantidad], '_blank');
+      }
 
-      // Enviar datos a Formspree vía AJAX
+      // Enviar datos a Formspree
       const formData = new FormData(ticketForm);
       try {
         const response = await fetch('https://formspree.io/f/mvgwlaoy', {
@@ -161,7 +163,7 @@
           headers: { 'Accept': 'application/json' }
         });
         if (response.ok) {
-          alert("Datos enviados correctamente. ¡Ahora completá tu pago!");
+          alert("Datos enviados correctamente. Ahora completá tu pago en Mercado Pago.");
           ticketForm.reset();
           totalDiv.textContent = '';
         } else {

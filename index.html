@@ -5,28 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Foundry Club - Fierro Records</title>
   <style>
-    /* Fuentes */
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rajdhani:wght@400;600&display=swap');
 
-    /* Fondo animado */
+    /* --- Fondo animado tipo chispa --- */
     body {
       margin: 0;
       padding: 0;
       height: 100vh;
       font-family: 'Rajdhani', sans-serif;
       color: white;
-      background: radial-gradient(circle at center, #000000 0%, #111111 100%);
+      background: radial-gradient(circle at center, #000 0%, #0a0a0a 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      animation: flash 4s infinite ease-in-out;
+      position: relative;
     }
 
-    @keyframes flash {
-      0%, 100% { background-color: #000; box-shadow: 0 0 20px #000 inset; }
-      50% { background-color: #222; box-shadow: 0 0 60px #fff1 inset; }
+    /* Chispas simuladas */
+    .spark {
+      position: absolute;
+      width: 2px;
+      height: 30px;
+      background: linear-gradient(to top, #fff, transparent);
+      opacity: 0;
+      animation: sparks 3s infinite ease-in-out;
+    }
+
+    @keyframes sparks {
+      0%, 100% { transform: translateY(0) rotate(0); opacity: 0; }
+      10% { opacity: 1; }
+      50% { transform: translateY(-80px) rotate(45deg); opacity: 0.6; }
+      100% { transform: translateY(-150px) rotate(90deg); opacity: 0; }
     }
 
     /* Títulos */
@@ -34,89 +45,6 @@
       font-family: 'Orbitron', sans-serif;
       font-size: 3.8rem;
       letter-spacing: 3px;
-      margin: 0;
-      text-transform: uppercase;
-      text-align: center;
-    }
+      margin:
 
-    h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.8rem;
-      margin: 10px 0 40px 0;
-      color: black;
-      -webkit-text-stroke: 1px white;
-      text-transform: uppercase;
-      text-align: center;
-    }
-
-    /* Info */
-    .info {
-      font-size: 1.2rem;
-      text-align: center;
-      line-height: 1.8;
-      letter-spacing: 0.5px;
-      margin-bottom: 30px;
-    }
-
-    /* Formulario */
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-
-    input, textarea {
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
-      width: 260px;
-      max-width: 80%;
-      text-align: center;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1rem;
-    }
-
-    .button {
-      margin-top: 20px;
-      padding: 14px 30px;
-      background-color: white;
-      color: black;
-      font-weight: bold;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .button:hover {
-      background-color: #999;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      h1 { font-size: 2.5rem; }
-      h2 { font-size: 1.3rem; }
-      .info { font-size: 1rem; }
-    }
-  </style>
-</head>
-<body>
-  <h1>THE FOUNDRY CLUB</h1>
-  <h2>by Fierro Records</h2>
-
-  <div class="info">
-    <p>📍 San Andrés, San Martín (Conurbano Bonaerense)</p>
-    <p>🗓 Viernes 24 de Octubre | ⏰ 23:00 a 05:00</p>
-    <p>🎵 Line Up: F.I.E.R.A. (Live) | Diego Amaro | Eneb</p>
-  </div>
-
-  <form action="https://link.mercadopago.com.ar/TULINKAQUI" method="get" target="_blank">
-    <input type="text" name="nombre" placeholder="Tu nombre o nombres de asistentes" required>
-    <input type="number" name="cantidad" placeholder="Cantidad de entradas" min="1" required>
-    <button class="button" type="submit">COMPRAR ENTRADA</button>
-  </form>
-</body>
-</html>
 

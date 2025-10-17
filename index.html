@@ -44,33 +44,35 @@
       letter-spacing: 2px;
     }
 
-    .info-box {
-      display: inline-block;
+    .info-box, .info-box-lineup {
+      display: block;
+      width: 90%;
+      max-width: 500px;
+      margin: 40px auto; /* centra y separa */
       padding: 15px 25px;
       border-radius: 10px;
-      margin-top: 40px;
-      margin-bottom: 40px;
     }
 
     .info-box p {
       font-size: 1.1rem;
       margin: 5px 0;
       line-height: 1.5;
-      white-space: nowrap; /* evita que las líneas se corten */
+      white-space: nowrap; /* evita que se rompa en varias líneas */
     }
 
     .info-box-lineup p {
       font-family: 'Orbitron', sans-serif;
       font-size: 1.5rem;
       letter-spacing: 2px;
-      margin-top: 20px;   /* reducido */
-      margin-bottom: 20px; /* reducido */
+      margin: 20px 0; /* espacio arriba y abajo reducido */
     }
 
     form {
-      margin-top: 30px;
-      display: inline-block;
+      margin: 30px auto;
+      display: block;
       text-align: left;
+      width: 90%;
+      max-width: 500px;
       background: rgba(0, 0, 0, 0.6);
       padding: 20px;
       border-radius: 10px;
@@ -128,6 +130,7 @@
       margin-top: 60px;
       font-size: 1.5rem;
       opacity: 0.9;
+      padding-bottom: 40px; /* espacio para que no se tape en móvil */
     }
 
     @media (max-width: 600px) {
@@ -135,7 +138,8 @@
       h2 { font-size: 1.5rem; }
       .info-box p { font-size: 1rem; white-space: normal; }
       .info-box-lineup p { font-size: 1.2rem; }
-      footer { margin-top: 100px; } /* más espacio para el footer en celular */
+      form { width: 95%; }
+      footer { margin-top: 80px; padding-bottom: 60px; }
     }
   </style>
 </head>

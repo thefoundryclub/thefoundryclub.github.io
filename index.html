@@ -44,7 +44,7 @@
 
     .info-box {
       display: block;
-      margin: 20px auto;
+      margin: 40px auto; /* igual distancia entre título y info boxes */
       padding: 15px 25px;
       border-radius: 10px;
     }
@@ -55,11 +55,14 @@
       line-height: 1.6;
     }
 
+    .info-box-lineup {
+      margin-top: 40px; /* misma distancia que info-box 1 */
+    }
+
     .info-box-lineup p {
       font-family: 'Orbitron', sans-serif;
       font-size: 1.5rem;
       letter-spacing: 1px;
-      margin-top: 20px;
     }
 
     form {
@@ -139,6 +142,7 @@
   <h2>by Fierro Records</h2>
 
   <div class="info-box">
+    <p>📍 SECRET LOCATION</p>
     <p>📍 San Andrés, San Martín (a 2 cuadras del túnel)</p>
     <p>🗓️ Viernes 24 de Octubre</p>
     <p>🕚 23:00 a 05:00 hs (Ingreso hasta la 1:00 AM)</p>
@@ -194,7 +198,7 @@
       const cantidad = tickets.value;
       if (cantidad) {
         const precio = precios[cantidad];
-        detalle.innerHTML = `Cantidad de entradas: ${cantidad} × $7,000<br>Monto total: $${precio.total.toLocaleString()}`;
+        detalle.innerHTML = `Cantidad de entradas: ${cantidad} × $7000<br>Monto total: $${precio.total}`;
       } else {
         detalle.innerHTML = '';
       }
@@ -219,4 +223,3 @@
   </script>
 </body>
 </html>
-

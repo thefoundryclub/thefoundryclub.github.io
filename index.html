@@ -19,6 +19,9 @@
       margin: 0;
       padding: 0;
       animation: flash 8s infinite ease-in-out;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     @keyframes flash {
@@ -29,7 +32,7 @@
     h1 {
       font-family: 'Orbitron', sans-serif;
       font-size: 3rem;
-      margin-top: 80px;
+      margin-top: 50px;
       letter-spacing: 3px;
     }
 
@@ -38,31 +41,34 @@
       font-size: 1.3rem;
       color: black;
       text-shadow: 0 0 5px white, 0 0 10px white;
+      margin-bottom: 30px;
     }
 
     .info-box {
-      display: inline-block;
       background: rgba(0, 0, 0, 0.6);
-      padding: 15px 25px;
+      padding: 20px 30px;
       border-radius: 10px;
-      margin-top: 15px;
       box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      text-align: center;
+      margin-bottom: 30px;
+      max-width: 400px;
+      width: 90%;
     }
 
     .info-box p {
       font-size: 1.1rem;
-      margin: 5px 0;
+      margin: 8px 0;
       line-height: 1.5;
     }
 
     form {
-      margin-top: 30px;
-      display: inline-block;
       text-align: left;
       background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 10px;
+      padding: 25px;
+      border-radius: 12px;
       box-shadow: 0 0 15px rgba(255,255,255,0.2);
+      width: 300px;
+      max-width: 90%;
     }
 
     label {
@@ -115,12 +121,14 @@
       margin-top: 40px;
       font-size: 1rem;
       opacity: 0.9;
+      text-align: center;
     }
 
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       h2 { font-size: 1rem; }
       .info-box p { font-size: 1rem; }
+      form { width: 85%; }
     }
   </style>
 </head>
@@ -131,7 +139,7 @@
   <div class="info-box">
     <p>📍 San Andrés, San Martín (a 2 cuadras del túnel)</p>
     <p>🗓️ Viernes 24 de Octubre</p>
-    <p>🕚 23:00 a 05:00 hs (Ingreso hasta las 2:00 AM)</p>
+    <p>🕚 23:00 a 05:00 hs (Ingreso hasta la 2:00 AM)</p>
     <p><strong>LINE UP:</strong> F.I.E.R.A. (live) · DIEGO AMARO · ENEB</p>
   </div>
 
@@ -203,6 +211,3 @@
   </script>
 </body>
 </html>
-
-
-

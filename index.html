@@ -8,7 +8,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Montserrat:wght@400;600&display=swap');
 
     body {
-      background-image: url('fondowebvidrio.jpg');
+      background-image: url('https://raw.githubusercontent.com/TU-USUARIO/TU-REPO/main/fondowebvidrio.jpg');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -59,18 +59,18 @@
       margin-top: 30px;
       display: inline-block;
       text-align: left;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 25px;
+      border-radius: 12px;
       box-shadow: 0 0 15px rgba(255,255,255,0.2);
-      max-width: 400px;
-      width: 90%;
+      width: 300px;
     }
 
     label {
       display: block;
       margin-top: 10px;
       font-weight: 600;
+      text-align: left;
     }
 
     input, select {
@@ -79,7 +79,6 @@
       margin-top: 5px;
       border: none;
       border-radius: 5px;
-      font-size: 1rem;
     }
 
     button {
@@ -104,7 +103,6 @@
       font-weight: bold;
       margin-top: 15px;
       font-size: 1.2rem;
-      text-align: center;
     }
 
     .warning {
@@ -122,18 +120,19 @@
     }
 
     a {
-      color: #ff99cc;
+      color: white;
       text-decoration: none;
     }
 
     a:hover {
-      text-decoration: underline;
+      color: #ff0099;
     }
 
     @media (max-width: 600px) {
-      h1 { font-size: 2rem; margin-top: 60px; }
+      h1 { font-size: 2rem; }
       h2 { font-size: 1rem; }
       .info-box p { font-size: 1rem; }
+      form { width: 85%; }
     }
   </style>
 </head>
@@ -144,10 +143,86 @@
   <div class="info-box">
     <p>📍 San Andrés, San Martín (a 2 cuadras del túnel)</p>
     <p>🗓️ Viernes 24 de Octubre</p>
-    <p>🕚 23:00 a 05:00 hs (Ingreso hasta las 1:00 AM)</p>
+    <p>🕚 23:00 a 05:00 hs (Ingreso hasta la 01:00 AM)</p>
     <p><strong>LINE UP:</strong> F.I.E.R.A. (LIVE) · DIEGO AMARO · ENEB</p>
   </div>
 
-  <form id="ticketForm">
-    <label>Nombre y Apellido del comprador:</label>
+  <form id="ticketForm" action="https://formspree.io/f/mvgwlaoy" method="POST">
+    <label for="name">Nombre y Apellido del comprador:</label>
+    <input type="text" id="name" name="name" required placeholder="Ej: Ana Pérez">
+
+    <label for="email">Correo electrónico:</label>
+    <input type="email" id="email" name="email" required placeholder="tucorreo@ejemplo.com">
+
+    <label for="tickets">Cantidad de entradas:</label>
+    <select id="tickets" name="tickets" required>
+      <option value="" disabled selected>Seleccionar</option>
+      <option value="1">1 entrada - $7.000</option>
+      <option value="2">2 entradas - $14.000</option>
+      <option value="3">3 entradas - $21.000</option>
+    </select>
+
+    <div class="total" id="detalle"></div>
+
+    <input type="hidden" name="_subject" value="Nueva compra de entrada - The Foundry Club">
+
+    <button type="submit">Comprar Entradas</button>
+
+    <p class="warning">
+      ⚠️ El ingreso será válido solo una vez confirmada la transferencia por Mercado Pago.<br>
+      📍 La dirección exacta del evento será enviada una vez abonada la entrada.
+    </p>
+  </form>
+
+  <footer>
+    <p>Instagram: <a href="https://instagram.com/fierrorecords" target="_blank">@fierrorecords</a></p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('ticketForm');
+    const tickets = document.getElementById('tickets');
+    const detalle = document.getElementById('detalle');
+
+    const precios = {
+      1: { total: 7000, link: 'https://mpago.la/2h7gDBs' },
+      2: { total: 14000, link: 'https://mpago.la/21WB1Uv' },
+      3: { total: 21000, link: 'https://mpago.la/1m2YvXb' }
+    };
+
+    tickets.addEventListener('change', () => {
+      const cantidad = tickets.value;
+      if (cantidad) {
+        const precio = precios[cantidad];
+        detalle.innerHTML = `${cantidad} × $7.000 = <strong>$${precio.total}</strong>`;
+      } else {
+        detalle.innerHTML = '';
+      }
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const cantidad = tickets.value;
+      const precio = precios[cantidad];
+      const data = new FormData(form);
+
+      try {
+        await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (precio) {
+          window.location.href = precio.link;
+        } else {
+          alert('Seleccioná una cantidad de entradas.');
+        }
+      } catch (err) {
+        alert('Error al enviar el formulario.');
+      }
+    });
+  </script>
+</body>
+</html>
+
 

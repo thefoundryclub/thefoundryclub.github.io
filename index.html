@@ -7,12 +7,6 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Montserrat:wght@400;600&display=swap');
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-
     body {
       background-image: url('fondowebvidrio.jpg');
       background-size: cover;
@@ -23,6 +17,8 @@
       text-align: center;
       font-family: 'Montserrat', sans-serif;
       animation: flash 8s infinite ease-in-out;
+      margin: 0;
+      padding: 0 0 80px 0; /* Espacio extra al final para footer */
     }
 
     @keyframes flash {
@@ -48,41 +44,43 @@
       letter-spacing: 2px;
     }
 
-    .info-box, .info-box-lineup {
+    .info-box {
       display: block;
-      max-width: 95%;
-      margin: 40px auto;
-      padding: 15px 20px;
+      padding: 15px 25px;
       border-radius: 10px;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
+      margin: 40px auto;
     }
 
-    .info-box p, .info-box-lineup p {
-      margin: 10px 0;
-      line-height: 1.5;
+    .info-box p {
       font-size: 1.1rem;
-      word-wrap: break-word;
+      margin: 5px 0;
+      line-height: 1.5;
+      white-space: nowrap; /* evita que se rompa en varias líneas */
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .info-box-lineup {
+      display: block;
+      margin: 40px auto;
     }
 
     .info-box-lineup p {
       font-family: 'Orbitron', sans-serif;
       font-size: 1.5rem;
       letter-spacing: 2px;
+      white-space: normal; /* que pueda ocupar varias líneas si hace falta */
+      margin: 20px 0;
     }
 
     form {
-      display: block;
-      width: 95%;
-      max-width: 400px;
-      margin: 0 auto 40px auto;
+      margin-top: 30px;
+      display: inline-block;
       text-align: left;
       background: rgba(0, 0, 0, 0.6);
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(255,255,255,0.2);
-      word-wrap: break-word;
-      overflow-wrap: break-word;
     }
 
     label {
@@ -97,7 +95,6 @@
       margin-top: 5px;
       border: none;
       border-radius: 5px;
-      box-sizing: border-box;
     }
 
     button {
@@ -135,11 +132,11 @@
 
     footer {
       margin-top: 40px;
-      font-size: 1.8rem;
+      font-size: 1.8rem; /* más grande para Instagram */
       opacity: 0.9;
     }
 
-    a {
+    footer a {
       color: white;
       text-decoration: none;
     }
@@ -147,9 +144,8 @@
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       h2 { font-size: 1.5rem; }
-      .info-box p, .info-box-lineup p { font-size: 1rem; }
+      .info-box p { font-size: 1rem; white-space: normal; }
       .info-box-lineup p { font-size: 1.2rem; }
-      form { width: 95%; }
       footer { font-size: 1.5rem; }
     }
   </style>
@@ -165,7 +161,7 @@
     <p>🕚 23:00 a 05:00 hs (Ingreso hasta las 1:00 AM)</p>
   </div>
 
-  <div class="info-box-lineup">
+  <div class="info-box info-box-lineup">
     <p><strong>LINE UP:</strong> F.I.E.R.A. (live) · DIEGO AMARO · ENEB</p>
   </div>
 
@@ -240,5 +236,3 @@
   </script>
 </body>
 </html>
-
-

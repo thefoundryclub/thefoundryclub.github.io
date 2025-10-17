@@ -123,8 +123,14 @@
 
     footer {
       margin-top: 40px;
-      font-size: 1rem;
+      font-size: 1.5rem; /* aumentamos tamaño del Instagram */
       opacity: 0.9;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
     }
 
     @media (max-width: 600px) {
@@ -132,6 +138,7 @@
       h2 { font-size: 1.5rem; }
       .info-box p { font-size: 1rem; }
       .info-box-lineup p { font-size: 1.2rem; }
+      footer { font-size: 1.2rem; }
     }
   </style>
 </head>
@@ -140,7 +147,6 @@
   <h2>by Fierro Records</h2>
 
   <div class="info-box">
-    <p>📍 SECRET LOCATION</p>
     <p>📍 San Andrés, San Martín (a 2 cuadras del túnel)</p>
     <p>🗓️ Viernes 24 de Octubre</p>
     <p>🕚 23:00 a 05:00 hs (Ingreso hasta las 1:00 AM)</p>
@@ -178,7 +184,7 @@
   </form>
 
   <footer>
-    <p>Instagram: <a href="https://instagram.com/fierrorecords" target="_blank" style="color:white; text-decoration:none;">@fierrorecords</a></p>
+    <p>Instagram: <a href="https://instagram.com/fierrorecords" target="_blank">@fierrorecords</a></p>
   </footer>
 
   <script>
@@ -221,3 +227,4 @@
   </script>
 </body>
 </html>
+

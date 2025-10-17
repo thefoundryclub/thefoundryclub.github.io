@@ -58,6 +58,7 @@
     <option value="1">1 entrada</option>
     <option value="2">2 entradas</option>
     <option value="3">3 entradas</option>
+    <option value="4">4 entradas</option>
   </select>
 
   <div class="total" id="detalle"></div>
@@ -77,15 +78,17 @@
 const tickets = document.getElementById('tickets');
 const detalle = document.getElementById('detalle');
 const precios = {
-  1: 'https://mpago.la/2h7gDBs',
-  2: 'https://mpago.la/21WB1Uv',
-  3: 'https://mpago.la/1m2YvXb'
+  1: 'https://mpago.li/13vaJDi',
+  2: 'https://mpago.li/25NrBGT',
+  3: 'https://mpago.li/1BBufaA',
+  4: 'https://mpago.li/1s7nqB2'
 };
 
 tickets.addEventListener('change', () => {
   const cantidad = tickets.value;
   if(cantidad) {
-    detalle.innerHTML = `Cantidad de entradas: ${cantidad} × $7000<br>Monto total: $${7000*cantidad}`;
+    const total = 7000 * cantidad;
+    detalle.innerHTML = `Cantidad de entradas: ${cantidad} × $7000<br>Monto total: $${total}`;
   } else { detalle.innerHTML=''; }
 });
 
@@ -93,14 +96,11 @@ document.getElementById('ticketForm').addEventListener('submit', (e)=>{
   e.preventDefault();
   const cantidad = tickets.value;
   if(!cantidad){ alert('Seleccioná la cantidad de entradas'); return; }
-  // enviar a Formspree via iframe
-  e.target.submit();
-  // redirigir a Mercado Pago
-  window.location.href = precios[cantidad];
+  e.target.submit(); // enviar a Formspree vía iframe
+  window.location.href = precios[cantidad]; // redirigir a Mercado Pago
 });
 </script>
 
 </body>
 </html>
-
 

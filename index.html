@@ -96,4 +96,67 @@
       h1 { font-size: 2.5rem; }
       h2 { font-size: 1.3rem; }
       .info { font-size: 1rem; }
+      form { width: 90%; }
+      .button { width: 80%; }
+    }
+  </style>
+</head>
+<body>
+  <h1>THE FOUNDRY CLUB</h1>
+  <h2>by Fierro Records</h2>
 
+  <div class="info">
+    <p>📍 San Andrés, San Martín (Conurbano Bonaerense)</p>
+    <p>🗓 Viernes 24 de Octubre | ⏰ 23:00 a 05:00</p>
+    <p>🎵 Line Up: F.I.E.R.A. (Live) | Diego Amaro | ENEB</p>
+  </div>
+
+  <!-- Formulario Formspree -->
+  <form action="https://formspree.io/f/mvgwlaoy" method="POST">
+    <input type="text" name="comprador" placeholder="Nombre del comprador" required>
+
+    <label for="cantidad">Cantidad de entradas:</label>
+    <select name="cantidad" id="cantidad" required>
+      <option value="">Selecciona</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
+
+    <!-- Aquí se generan los inputs dinámicos con JS -->
+    <div id="asistentes"></div>
+
+    <button type="submit">Enviar y pagar</button>
+  </form>
+
+  <!-- Botón de Mercado Pago -->
+  <a class="button" href="https://link.mercadopago.com.ar/TULINKMP" target="_blank">
+    PAGAR ENTRADAS
+  </a>
+
+  <script>
+    const cantidadSelect = document.getElementById('cantidad');
+    const asistentesDiv = document.getElementById('asistentes');
+
+    cantidadSelect.addEventListener('change', () => {
+      asistentesDiv.innerHTML = ''; // Limpiar inputs previos
+      const cantidad = parseInt(cantidadSelect.value);
+      for (let i = 1; i <= cantidad; i++) {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.name = `asistente${i}`;
+        input.placeholder = `Nombre asistente ${i}`;
+        input.required = true;
+        asistentesDiv.appendChild(input);
+      }
+    });
+  </script>
+</body>
+</html>

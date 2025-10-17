@@ -1,171 +1,192 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>The Foundry Club - Fierro Records</title>
   <style>
+    /* Fuentes */
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rajdhani:wght@400;600&display=swap');
 
-    /* --- Fondo animado tipo chispa --- */
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      font-family: 'Rajdhani', sans-serif;
-      color: white;
-      background: radial-gradient(circle at center, #000 0%, #0a0a0a 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
+    /* Layout base */
+    :root{
+      --accent: #ff0044;
+      --bg-dark: #000;
+      --bg-mid: #111;
+      --text: #fff;
+      --card-width: 320px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      padding:0;
+      font-family:'Rajdhani',sans-serif;
+      color:var(--text);
+      background: radial-gradient(circle at center, var(--bg-mid) 0%, var(--bg-dark) 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      position:relative;
     }
 
-    /* Chispas simuladas */
-    .spark {
-      position: absolute;
-      width: 2px;
-      height: 30px;
-      background: linear-gradient(to top, #fff, transparent);
-      opacity: 0;
-      animation: sparks 3s infinite ease-in-out;
+    /* FLASH OVERLAY (sutil, visible) */
+    .flash {
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:1; /* debajo del contenido (contenido z-index:2) */
+      background: radial-gradient(circle at 50% 25%,
+        rgba(255,255,255,0.9) 0%,
+        rgba(255,255,255,0.38) 8%,
+        rgba(255,255,255,0.08) 18%,
+        transparent 30%);
+      opacity:0;
+      mix-blend-mode: screen;
+      animation: flashPulse 5.5s infinite ease-in-out;
+    }
+    @keyframes flashPulse{
+      0%   { opacity: 0; transform: scale(1); }
+      40%  { opacity: 0; }
+      48%  { opacity: 0.85; transform: scale(1.02); } /* momento del flash */
+      55%  { opacity: 0.25; transform: scale(1.04); }
+      100% { opacity: 0; transform: scale(1.06); }
     }
 
-    @keyframes sparks {
-      0%, 100% { transform: translateY(0) rotate(0); opacity: 0; }
-      10% { opacity: 1; }
-      50% { transform: translateY(-80px) rotate(45deg); opacity: 0.6; }
-      100% { transform: translateY(-150px) rotate(90deg); opacity: 0; }
+    /* Contenedor principal */
+    .wrap{
+      position:relative;
+      z-index:2;
+      width:100%;
+      max-width:900px;
+      padding:48px 24px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:18px;
+      text-align:center;
+      backdrop-filter: blur(0.0px);
     }
 
-    /* Títulos */
-    h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3.8rem;
-      letter-spacing: 3px;
-      margin: 0;
-      text-transform: uppercase;
-      text-align: center;
-      z-index: 2;
+    h1{
+      font-family:'Orbitron',sans-serif;
+      font-size:3.8rem;
+      letter-spacing:3px;
+      margin:0;
+      text-transform:uppercase;
     }
 
-    h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.8rem;
-      margin: 10px 0 40px 0;
-      color: black;
-      -webkit-text-stroke: 1px white;
-      text-transform: uppercase;
-      text-align: center;
-      z-index: 2;
+    h2{
+      font-family:'Orbitron',sans-serif;
+      font-size:1.8rem;
+      margin:0;
+      color:black; /* relleno negro */
+      -webkit-text-stroke:1px white; /* borde blanco */
+      text-transform:uppercase;
     }
 
-    /* Info */
-    .info {
-      font-size: 1.2rem;
-      text-align: center;
-      line-height: 1.8;
-      letter-spacing: 0.5px;
-      margin-bottom: 30px;
-      z-index: 2;
+    .info{
+      font-size:1.12rem;
+      color:#dcdcdc;
+      line-height:1.6;
+      max-width:760px;
     }
 
     /* Formulario */
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      z-index: 2;
+    form{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+      margin-top:6px;
     }
 
-    select, input {
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
-      width: 260px;
-      max-width: 80%;
-      text-align: center;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1rem;
+    select, input[type="text"], input[type="number"]{
+      width:var(--card-width);
+      max-width:88%;
+      padding:10px 12px;
+      border-radius:8px;
+      border:none;
+      background:rgba(255,255,255,0.06);
+      color:var(--text);
+      font-size:1rem;
+      text-align:center;
+      outline: 1px solid rgba(255,255,255,0.04);
     }
 
-    .button {
-      margin-top: 20px;
-      padding: 14px 30px;
-      background-color: white;
-      color: black;
-      font-weight: bold;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: 0.3s;
+    /* Contenedor que tendrá los inputs de nombres (apilados) */
+    #nombresContainer{
+      width:var(--card-width);
+      max-width:88%;
+      display:flex;
+      flex-direction:column;   /* uno debajo del otro */
+      gap:10px;                /* pequeño espacio estético */
+      margin-top:6px;
+      align-items:center;
     }
 
-    .button:hover {
-      background-color: #999;
+    .button{
+      padding:12px 28px;
+      border-radius:8px;
+      background:var(--text);
+      color:black;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+      text-decoration:none;
+    }
+    .button:hover{ opacity:0.9; transform:translateY(-2px); transition:all .15s ease; }
+
+    /* Responsivo: tamaños más pequeños en móvil */
+    @media (max-width:600px){
+      h1{ font-size:2.4rem; }
+      h2{ font-size:1.1rem; -webkit-text-stroke:0.8px white; }
+      .info{ font-size:0.95rem; }
+      :root{ --card-width:280px; }
     }
 
-    /* Responsive */
-    @media (max-width: 600px) {
-      h1 { font-size: 2.4rem; }
-      h2 { font-size: 1.2rem; }
-      .info { font-size: 1rem; }
-    }
   </style>
 </head>
 <body>
-  <!-- Chispas dinámicas -->
-  <script>
-    for (let i = 0; i < 15; i++) {
-      const spark = document.createElement('div');
-      spark.classList.add('spark');
-      spark.style.left = Math.random() * 100 + 'vw';
-      spark.style.animationDelay = Math.random() * 3 + 's';
-      spark.style.animationDuration = 2 + Math.random() * 2 + 's';
-      document.body.appendChild(spark);
-    }
-  </script>
 
-  <h1>THE FOUNDRY CLUB</h1>
-  <h2>by Fierro Records</h2>
+  <!-- Flash overlay -->
+  <div class="flash" aria-hidden="true"></div>
 
-  <div class="info">
-    <p>📍 San Andrés, San Martín (Conurbano Bonaerense)</p>
-    <p>🗓 Viernes 24 de Octubre | ⏰ 23:00 a 05:00</p>
-    <p>🎵 Line Up: F.I.E.R.A. (Live) | Diego Amaro | ENEB</p>
+  <div class="wrap">
+    <h1>THE FOUNDRY CLUB</h1>
+    <h2>by Fierro Records</h2>
+
+    <div class="info">
+      <p>📍 San Andrés, San Martín (Conurbano Bonaerense)</p>
+      <p>🗓 Viernes 24 de Octubre | ⏰ 23:00 a 05:00</p>
+      <p>🎵 Line Up: F.I.E.R.A. (Live) | Diego Amaro | ENEB</p>
+    </div>
+
+    <!-- Form: seleccion cantidad -> genera inputs apilados -->
+    <form id="ticketForm" action="https://link.mercadopago.com.ar/TULINKAQUI" method="get" target="_blank" onsubmit="return prepareSubmission()">
+      <select id="cantidad" name="cantidad" required>
+        <option value="">Cantidad de entradas</option>
+        <!-- opciones 1..10 -->
+        <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+        <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+        <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+
+      <div id="nombresContainer" aria-live="polite"></div>
+
+      <button class="button" type="submit">COMPRAR ENTRADAS</button>
+    </form>
   </div>
-
-  <form id="ticketForm" action="https://link.mercadopago.com.ar/TULINKAQUI" method="get" target="_blank">
-    <select id="cantidad" name="cantidad" required>
-      <option value="">Cantidad de entradas</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-    </select>
-
-    <div id="nombresContainer"></div>
-
-    <button class="button" type="submit">COMPRAR ENTRADAS</button>
-  </form>
 
   <script>
     const cantidadSelect = document.getElementById('cantidad');
     const nombresContainer = document.getElementById('nombresContainer');
 
     cantidadSelect.addEventListener('change', () => {
-      nombresContainer.innerHTML = ''; // limpiar anteriores
-      const cantidad = parseInt(cantidadSelect.value);
+      nombresContainer.innerHTML = ''; // limpia previos
+      const cantidad = parseInt(cantidadSelect.value, 10);
       if (!cantidad) return;
 
       for (let i = 1; i <= cantidad; i++) {
@@ -174,10 +195,28 @@
         input.name = `nombre_${i}`;
         input.placeholder = `Nombre del asistente ${i}`;
         input.required = true;
+        input.autocomplete = 'name';
+        // estilo extra para que se vean como "tarjetas" ligeramente
+        input.style.background = 'rgba(255,255,255,0.04)';
+        input.style.border = '1px solid rgba(255,255,255,0.06)';
+        input.style.padding = '10px 12px';
+        input.style.borderRadius = '6px';
         nombresContainer.appendChild(input);
       }
     });
+
+    /* Preparar envío:
+       - Mercado Pago por URL no acepta campos arbitrarios por default.
+       - Aquí dejamos que el form abra tu link en nueva pestaña.
+       - Si querés enviar nombres a tu mail o DB, eso requiere backend o integración (te lo hago si querés).
+    */
+    function prepareSubmission(){
+      // Si querés validar algo extra, lo podés hacer acá.
+      // Dejo que el form haga target _blank al link de Mercado Pago.
+      return true;
+    }
   </script>
 </body>
 </html>
+
 

@@ -16,8 +16,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       min-height: 100vh;
+      padding-top: 40px;
     }
 
     h1 {
@@ -44,12 +45,11 @@
       margin-bottom: 30px;
     }
 
-    form, .pago {
+    form {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       width: 300px;
-      margin-bottom: 20px;
     }
 
     input, select, button {
@@ -59,10 +59,6 @@
       border: none;
       outline: none;
       font-family: 'Rajdhani', sans-serif;
-    }
-
-    input {
-      margin-bottom: 10px;
     }
 
     button {
@@ -77,43 +73,25 @@
       background-color: #999;
     }
 
-    .button {
-      margin: 12px;
-      padding: 14px 30px;
-      background-color: white;
-      color: black;
-      font-weight: bold;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: 0.3s;
-      font-family: 'Rajdhani', sans-serif;
-      text-align: center;
-    }
-
-    .button:hover {
-      background-color: #999;
-    }
-
     .total {
       font-weight: bold;
       margin: 10px 0;
       text-align: center;
     }
 
-    #formAsistentes {
-      display: none; /* oculto al inicio */
+    .advertencia {
+      color: #ffcc00;
+      font-weight: bold;
+      text-align: center;
+      margin: 10px 0;
     }
 
     @media (max-width: 600px) {
       h1 { font-size: 2.5rem; }
       h2 { font-size: 1.3rem; }
       .info { font-size: 1rem; }
-      form, .pago { width: 90%; }
-      .button { width: 80%; }
+      form { width: 90%; }
     }
-
   </style>
 </head>
 <body>
@@ -126,10 +104,11 @@
     <p>🎵 Line Up: F.I.E.R.A. (Live) | Diego Amaro | ENEB</p>
   </div>
 
-  <!-- Selección de entradas -->
-  <div class="pago">
+  <form id="ticketForm" action="https://formspree.io/f/mvgwlaoy" method="POST">
+    <input type="text" name="nombre_comprador" placeholder="Tu nombre" required>
+
     <label for="cantidad">Cantidad de entradas:</label>
-    <select id="cantidad" required>
+    <select id="cantidad" name="cantidad" required>
       <option value="">Selecciona</option>
       <option value="1">1</option>
       <option value="2">2</option>
@@ -145,59 +124,42 @@
 
     <div class="total" id="total"></div>
 
-    <a id="pagarBtn" class="button" href="#" target="_blank">PAGAR ENTRADAS</a>
-  </div>
+    <p class="advertencia">
+      ⚠️ El ingreso al evento solo será confirmado una vez que se complete la transferencia de Mercado Pago.
+    </p>
 
-  <!-- Formulario para nombres de asistentes -->
-  <form id="formAsistentes" action="https://formspree.io/f/mvgwlaoy" method="POST">
-    <div id="asistentes"></div>
-    <button type="submit">Enviar nombres</button>
+    <button type="submit" id="pagarBtn">Comprar Entradas</button>
   </form>
 
   <script>
     const cantidadSelect = document.getElementById('cantidad');
-    const asistentesDiv = document.getElementById('asistentes');
     const totalDiv = document.getElementById('total');
-    const pagarBtn = document.getElementById('pagarBtn');
-    const formAsistentes = document.getElementById('formAsistentes');
+    const ticketForm = document.getElementById('ticketForm');
     const precioEntrada = 7000;
-
-    let cantidadSeleccionada = 0;
 
     cantidadSelect.addEventListener('change', () => {
       const cantidad = parseInt(cantidadSelect.value);
-      cantidadSeleccionada = cantidad || 0;
-
-      totalDiv.textContent = cantidadSeleccionada ? 
-        `${cantidadSeleccionada} x $${precioEntrada} = Monto total: $${cantidadSeleccionada * precioEntrada}` : '';
-
-      // Cambiar link de pago con monto
-      pagarBtn.href = cantidadSeleccionada ? `https://link.mercadopago.com.ar/TULINKMP` : '#';
+      if (cantidad) {
+        const total = cantidad * precioEntrada;
+        totalDiv.textContent = `${cantidad} x $${precioEntrada} = Monto total: $${total}`;
+      } else {
+        totalDiv.textContent = '';
+      }
     });
 
-    // Mostrar formulario de asistentes después de hacer clic en pagar
-    pagarBtn.addEventListener('click', (e) => {
-      if (!cantidadSeleccionada) {
-        e.preventDefault();
-        alert("Por favor, selecciona la cantidad de entradas primero.");
-        return;
-      }
-      // mostrar formulario de asistentes
-      setTimeout(() => { 
-        formAsistentes.style.display = 'flex'; 
-        // generar inputs según cantidad
-        asistentesDiv.innerHTML = '';
-        for (let i = 1; i <= cantidadSeleccionada; i++) {
-          const input = document.createElement('input');
-          input.type = 'text';
-          input.name = `asistente${i}`;
-          input.placeholder = `Nombre asistente ${i}`;
-          input.required = true;
-          asistentesDiv.appendChild(input);
-        }
-      }, 500); // 0.5s para simular pago
+    ticketForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const cantidad = parseInt(cantidadSelect.value);
+      const total = cantidad * precioEntrada;
+
+      // Abrir link de Mercado Pago en nueva pestaña
+      // REEMPLAZAR TULINKMP por tu link real de Mercado Pago
+      const mpLink = `https://link.mercadopago.com.ar/TULINKMP?amount=${total}`;
+      window.open(mpLink, '_blank');
+
+      // Enviar formulario a Formspree
+      ticketForm.submit();
     });
   </script>
 </body>
 </html>
-

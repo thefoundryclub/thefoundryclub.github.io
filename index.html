@@ -45,7 +45,7 @@
     }
 
     .info-box {
-      display: inline-block;
+      display: block;
       padding: 15px 25px;
       border-radius: 10px;
       margin-top: 40px;
@@ -61,7 +61,6 @@
     }
 
     .info-box-lineup {
-      display: inline-block;
       text-align: center;
       margin-top: 20px;
       margin-bottom: 20px;
@@ -73,6 +72,7 @@
       letter-spacing: 2px;
       margin: 5px 0;
       line-height: 1.5;
+      white-space: normal; /* aseguramos que se vea vertical */
     }
 
     form {
@@ -153,16 +153,14 @@
 
   <div class="info-box">
     <p>📍 SECRET LOCATION</p>
-    <p>📍 San Andrés, San Martín </p>
-    </p>a 2 cuadras del túnel</p>
+    <p>📍 San Andrés, San Martín (a 2 cuadras del túnel)</p>
     <p>🗓️ Viernes 24 de Octubre</p>
     <p>🕚 23:00 a 05:00 hs</p>
-    <p>  (Ingreso hasta la 1:00 AM)</p>
+    <p>(Ingreso hasta la 1:00 AM)</p>
   </div>
 
   <div class="info-box info-box-lineup">
-    <p><strong>LINE UP:</strong> F.I.E.R.A. (live) ·
-    <p>DIEGO AMARO · ENEB</p>
+    <p><strong>LINE UP:</strong> F.I.E.R.A. (live) · DIEGO AMARO · ENEB</p>
   </div>
 
   <form id="ticketForm" action="https://formspree.io/f/xdkwblbq" method="POST">

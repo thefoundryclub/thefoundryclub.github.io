@@ -44,7 +44,7 @@
       margin-bottom: 30px;
     }
 
-    form {
+    form, .pago {
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -62,7 +62,7 @@
     }
 
     input {
-      margin-bottom: 10px; /* más separación entre nombres de asistentes */
+      margin-bottom: 10px;
     }
 
     button {
@@ -102,11 +102,15 @@
       text-align: center;
     }
 
+    #formAsistentes {
+      display: none; /* oculto al inicio */
+    }
+
     @media (max-width: 600px) {
       h1 { font-size: 2.5rem; }
       h2 { font-size: 1.3rem; }
       .info { font-size: 1rem; }
-      form { width: 90%; }
+      form, .pago { width: 90%; }
       .button { width: 80%; }
     }
 
@@ -122,9 +126,10 @@
     <p>🎵 Line Up: F.I.E.R.A. (Live) | Diego Amaro | ENEB</p>
   </div>
 
-  <form action="https://formspree.io/f/mvgwlaoy" method="POST">
+  <!-- Selección de entradas -->
+  <div class="pago">
     <label for="cantidad">Cantidad de entradas:</label>
-    <select name="cantidad" id="cantidad" required>
+    <select id="cantidad" required>
       <option value="">Selecciona</option>
       <option value="1">1</option>
       <option value="2">2</option>
@@ -140,41 +145,59 @@
 
     <div class="total" id="total"></div>
 
-    <!-- Inputs dinámicos para nombres de asistentes -->
+    <a id="pagarBtn" class="button" href="#" target="_blank">PAGAR ENTRADAS</a>
+  </div>
+
+  <!-- Formulario para nombres de asistentes -->
+  <form id="formAsistentes" action="https://formspree.io/f/mvgwlaoy" method="POST">
     <div id="asistentes"></div>
-
-    <button type="submit">Enviar y pagar</button>
+    <button type="submit">Enviar nombres</button>
   </form>
-
-  <!-- Botón de Mercado Pago -->
-  <a class="button" href="https://link.mercadopago.com.ar/TULINKMP" target="_blank">
-    PAGAR ENTRADAS
-  </a>
 
   <script>
     const cantidadSelect = document.getElementById('cantidad');
     const asistentesDiv = document.getElementById('asistentes');
     const totalDiv = document.getElementById('total');
+    const pagarBtn = document.getElementById('pagarBtn');
+    const formAsistentes = document.getElementById('formAsistentes');
     const precioEntrada = 7000;
 
+    let cantidadSeleccionada = 0;
+
     cantidadSelect.addEventListener('change', () => {
-      asistentesDiv.innerHTML = '';
-      totalDiv.innerHTML = '';
-
       const cantidad = parseInt(cantidadSelect.value);
-      if (!cantidad) return;
+      cantidadSeleccionada = cantidad || 0;
 
-      totalDiv.textContent = `${cantidad} x $${precioEntrada} = Monto total: $${cantidad * precioEntrada}`;
+      totalDiv.textContent = cantidadSeleccionada ? 
+        `${cantidadSeleccionada} x $${precioEntrada} = Monto total: $${cantidadSeleccionada * precioEntrada}` : '';
 
-      for (let i = 1; i <= cantidad; i++) {
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.name = `asistente${i}`;
-        input.placeholder = `Nombre asistente ${i}`;
-        input.required = true;
-        asistentesDiv.appendChild(input);
+      // Cambiar link de pago con monto
+      pagarBtn.href = cantidadSeleccionada ? `https://link.mercadopago.com.ar/TULINKMP` : '#';
+    });
+
+    // Mostrar formulario de asistentes después de hacer clic en pagar
+    pagarBtn.addEventListener('click', (e) => {
+      if (!cantidadSeleccionada) {
+        e.preventDefault();
+        alert("Por favor, selecciona la cantidad de entradas primero.");
+        return;
       }
+      // mostrar formulario de asistentes
+      setTimeout(() => { 
+        formAsistentes.style.display = 'flex'; 
+        // generar inputs según cantidad
+        asistentesDiv.innerHTML = '';
+        for (let i = 1; i <= cantidadSeleccionada; i++) {
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.name = `asistente${i}`;
+          input.placeholder = `Nombre asistente ${i}`;
+          input.required = true;
+          asistentesDiv.appendChild(input);
+        }
+      }, 500); // 0.5s para simular pago
     });
   </script>
 </body>
 </html>
+

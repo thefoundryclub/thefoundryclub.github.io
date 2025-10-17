@@ -1,188 +1,189 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>THE FOUNDRY CLUB - Fierro Records</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIERRO RECORDS - Techno Night</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Montserrat:wght@400;600&display=swap');
-
     body {
-      background-image: url('fondoweb.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
       color: white;
       text-align: center;
-      font-family: 'Montserrat', sans-serif;
-      margin: 0;
-      padding: 0;
-      animation: flash 8s infinite ease-in-out;
+      background: url('https://raw.githubusercontent.com/TU-USUARIO/TU-REPO/main/fondoweb.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
     }
 
-    @keyframes flash {
-      0%, 100% { filter: brightness(1); }
-      50% { filter: brightness(1.3); }
+    /* Oscurecer el fondo para mejorar contraste del texto */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      padding: 30px;
+      max-width: 600px;
+      margin: auto;
     }
 
     h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3rem;
-      margin-top: 80px;
-      letter-spacing: 3px;
+      font-size: 2.5em;
+      text-transform: uppercase;
+      margin-bottom: 0.3em;
+      letter-spacing: 2px;
+      animation: flash 1s infinite alternate;
     }
 
-    h2 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.3rem;
-      color: black;
-      text-shadow: 0 0 5px white, 0 0 10px white;
+    @keyframes flash {
+      from { text-shadow: 0 0 10px #fff, 0 0 20px #ff00aa; }
+      to { text-shadow: 0 0 20px #ff00aa, 0 0 40px #fff; }
     }
 
     p {
-      font-size: 1.2rem;
-      margin: 10px 0;
+      font-size: 1.1em;
+      margin: 8px 0;
     }
 
     form {
-      margin-top: 30px;
-      display: inline-block;
-      text-align: left;
       background: rgba(0, 0, 0, 0.6);
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+      margin-top: 20px;
     }
 
     label {
       display: block;
       margin-top: 10px;
-      font-weight: 600;
+      font-weight: bold;
     }
 
     input, select {
-      width: 100%;
+      width: 90%;
       padding: 8px;
       margin-top: 5px;
-      border: none;
       border-radius: 5px;
+      border: none;
+      font-size: 1em;
     }
 
     button {
-      background-color: white;
-      color: black;
-      font-weight: bold;
-      padding: 10px 20px;
+      background-color: #ff0077;
+      color: white;
       border: none;
-      border-radius: 5px;
-      margin-top: 20px;
+      padding: 12px 20px;
+      font-size: 1em;
+      margin-top: 15px;
+      border-radius: 8px;
       cursor: pointer;
       transition: 0.3s;
-      width: 100%;
     }
 
     button:hover {
-      background-color: #ff0099;
-      color: white;
-    }
-
-    .total {
-      font-weight: bold;
-      margin-top: 15px;
-      font-size: 1.2rem;
+      background-color: #ff3399;
     }
 
     .warning {
-      margin-top: 20px;
-      font-size: 0.95rem;
-      color: #ff8080;
-      text-align: center;
+      font-size: 0.9em;
+      color: #ffcc00;
+      margin-top: 10px;
     }
 
     footer {
       margin-top: 40px;
-      font-size: 1rem;
-      opacity: 0.9;
+      font-size: 0.9em;
     }
 
-    @media (max-width: 600px) {
-      h1 { font-size: 2rem; }
-      h2 { font-size: 1rem; }
+    a {
+      color: #ff99cc;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <h1>THE FOUNDRY CLUB</h1>
-  <h2>by Fierro Records</h2>
-  <p>📍 San Andrés, San Martín - Viernes 24 de Octubre<br>🕚 23:00 a 05:00 hs (Ingreso hasta las 2:00 AM)</p>
-  <p>LINE UP: F.I.E.R.A. (live) · DIEGO AMARO · ENEB</p>
+  <div class="container">
+    <h1>FIERRO RECORDS PRESENTA</h1>
+    <p>📍 San Andrés, San Martín (a 2 cuadras del túnel) - Viernes 24 de Octubre</p>
+    <p>🕚 23:00 a 05:00 hs (Ingreso hasta las 2:00 AM)</p>
+    <p>LINE UP: F.I.E.R.A. (live) · DIEGO AMARO · ENEB</p>
 
-  <form id="ticketForm" action="https://formspree.io/f/mvgwlaoy" method="POST">
-    <label for="name">Nombre y Apellido del comprador:</label>
-    <input type="text" id="name" name="name" required>
+    <form id="ticketForm">
+      <label>Nombre y Apellido del Comprador:</label>
+      <input type="text" name="nombre" required placeholder="Tu nombre completo">
 
-    <label for="email">Correo electrónico:</label>
-    <input type="email" id="email" name="email" required>
+      <label>Email de contacto:</label>
+      <input type="email" name="email" required placeholder="tucorreo@ejemplo.com">
 
-    <label for="tickets">Cantidad de entradas:</label>
-    <select id="tickets" name="tickets" required>
-      <option value="" disabled selected>Seleccionar</option>
-      <option value="1">1 entrada</option>
-      <option value="2">2 entradas</option>
-      <option value="3">3 entradas</option>
-    </select>
+      <label>Cantidad de Entradas:</label>
+      <select id="cantidad" name="cantidad" required>
+        <option value="">Seleccionar...</option>
+        <option value="1">1 entrada - $7.000</option>
+        <option value="2">2 entradas - $14.000</option>
+        <option value="3">3 entradas - $21.000</option>
+      </select>
 
-    <div class="total" id="detalle"></div>
+      <p id="detalleMonto"></p>
 
-    <input type="hidden" name="_subject" value="Nueva compra de entrada - The Foundry Club">
+      <button type="submit">Comprar Entradas</button>
 
-    <button type="submit">Comprar Entradas</button>
+      <p class="warning">
+        ⚠️ El ingreso será confirmado únicamente una vez realizado el pago.<br>
+        La dirección exacta del evento será enviada luego de abonar.
+      </p>
+    </form>
 
-    <p class="warning">⚠️ El ingreso al evento será válido solo una vez confirmada la transferencia por Mercado Pago.</p>
-  </form>
-
-  <footer>
-    <p>Instagram: <a href="https://instagram.com/fierrorecords" target="_blank" style="color:white; text-decoration:none;">@fierrorecords</a></p>
-  </footer>
+    <footer>
+      <p>Seguinos en <a href="https://www.instagram.com/fierrorecords/" target="_blank">@fierrorecords</a></p>
+    </footer>
+  </div>
 
   <script>
     const form = document.getElementById('ticketForm');
-    const tickets = document.getElementById('tickets');
-    const detalle = document.getElementById('detalle');
+    const cantidadSelect = document.getElementById('cantidad');
+    const detalleMonto = document.getElementById('detalleMonto');
+    const formspreeURL = 'https://formspree.io/f/mvgwlaoy';
 
-    const precios = {
-      1: { total: 7000, link: 'https://mpago.la/2h7gDBs' },
-      2: { total: 14000, link: 'https://mpago.la/21WB1Uv' },
-      3: { total: 21000, link: 'https://mpago.la/1m2YvXb' }
-    };
-
-    tickets.addEventListener('change', () => {
-      const cantidad = tickets.value;
+    cantidadSelect.addEventListener('change', () => {
+      const cantidad = parseInt(cantidadSelect.value);
+      const precio = 7000;
       if (cantidad) {
-        const precio = precios[cantidad];
-        detalle.innerHTML = `${cantidad} × $7000 = <strong>$${precio.total}</strong>`;
+        detalleMonto.textContent = `${cantidad} x $${precio.toLocaleString()} = Total: $${(cantidad * precio).toLocaleString()}`;
       } else {
-        detalle.innerHTML = '';
+        detalleMonto.textContent = '';
       }
     });
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const cantidad = tickets.value;
-      const precio = precios[cantidad];
-      const formData = new FormData(form);
+      const data = new FormData(form);
+      const cantidad = parseInt(data.get('cantidad'));
 
-      fetch(form.action, { method: form.method, body: formData })
-        .then(() => {
-          if (precio) {
-            window.location.href = precio.link;
-          } else {
-            alert('Seleccioná la cantidad de entradas.');
-          }
-        })
-        .catch(err => alert('Error al enviar el formulario.'));
+      // Enviar datos a Formspree
+      await fetch(formspreeURL, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      // Redirigir al link de pago correspondiente
+      const links = {
+        1: 'https://mpago.la/2h7gDBs',
+        2: 'https://mpago.la/21WB1Uv',
+        3: 'https://mpago.la/1m2YvXb'
+      };
+      if (links[cantidad]) {
+        window.location.href = links[cantidad];
+      } else {
+        alert('Por favor seleccioná una cantidad válida.');
+      }
     });
   </script>
 </body>
 </html>
+

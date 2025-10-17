@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>THE FOUNDRY CLUB - Fierro Records</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Montserrat:wght@400;600&display=swap');
 
     body {
       background-image: url('fondowebvidrio.jpg');
@@ -30,7 +29,7 @@
     h1 {
       font-family: 'Orbitron', sans-serif;
       font-size: 3rem;
-      margin-top: 50px;
+      margin-top: 40px;
       letter-spacing: 3px;
     }
 
@@ -38,42 +37,38 @@
       font-family: 'Orbitron', sans-serif;
       font-size: 2rem;
       color: black;
-      -webkit-text-stroke: 1px white;
+      text-shadow: 0 0 2px white, 0 0 4px white;
       margin-top: 5px;
     }
 
     .info-box {
       display: block;
-      margin: 15px auto;
+      margin: 20px auto;
       padding: 15px 25px;
+      border-radius: 10px;
     }
 
     .info-box p {
-      font-size: 1.1rem;
-      margin: 5px 0;
-      line-height: 1.5;
+      font-size: 1.2rem;
+      margin: 8px 0;
+      line-height: 1.6;
     }
 
-    .lineup-box {
-      display: block;
-      margin: 30px auto;
+    .info-box-lineup p {
       font-family: 'Orbitron', sans-serif;
       font-size: 1.5rem;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
+      margin-top: 20px;
     }
 
     form {
-      margin-top: 30px;
+      margin: 30px auto;
       display: block;
       text-align: left;
-      background: rgba(0, 0, 0, 0.6);
+      max-width: 400px;
+      background: rgba(0,0,0,0.6);
       padding: 20px;
       border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-      box-shadow: 0 0 15px rgba(255,255,255,0.2);
     }
 
     label {
@@ -88,6 +83,7 @@
       margin-top: 5px;
       border: none;
       border-radius: 5px;
+      font-size: 1rem;
     }
 
     button {
@@ -112,6 +108,7 @@
       font-weight: bold;
       margin-top: 15px;
       font-size: 1.2rem;
+      text-align: center;
     }
 
     .warning {
@@ -131,8 +128,8 @@
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       h2 { font-size: 1.5rem; }
-      .lineup-box { font-size: 1.2rem; }
       .info-box p { font-size: 1rem; }
+      .info-box-lineup p { font-size: 1.2rem; }
     }
   </style>
 </head>
@@ -146,8 +143,8 @@
     <p>🕚 23:00 a 05:00 hs (Ingreso hasta la 1:00 AM)</p>
   </div>
 
-  <div class="lineup-box">
-    LINE UP: F.I.E.R.A. (live) · DIEGO AMARO · ENEB
+  <div class="info-box info-box-lineup">
+    <p><strong>LINE UP:</strong> F.I.E.R.A. (live) · DIEGO AMARO · ENEB</p>
   </div>
 
   <form id="ticketForm" action="https://formspree.io/f/mvgwlaoy" method="POST">
@@ -171,7 +168,10 @@
 
     <button type="submit">Comprar Entradas</button>
 
-    <p class="warning">⚠️ El ingreso al evento será válido solo una vez confirmada la transferencia por Mercado Pago.<br>📍 La dirección exacta se enviará por correo una vez abonada la entrada.</p>
+    <p class="warning">
+      ⚠️ El ingreso al evento será válido solo una vez confirmada la transferencia por Mercado Pago.<br>
+      📍 La dirección exacta se enviará por correo una vez abonada la entrada.
+    </p>
   </form>
 
   <footer>
@@ -193,7 +193,7 @@
       const cantidad = tickets.value;
       if (cantidad) {
         const precio = precios[cantidad];
-        detalle.innerHTML = `Cantidad de entradas: ${cantidad} × $7000 = <strong>Total: $${precio.total}</strong>`;
+        detalle.innerHTML = `Cantidad de entradas: ${cantidad} × $7.000<br>Monto total: $${precio.total.toLocaleString()}`;
       } else {
         detalle.innerHTML = '';
       }
@@ -218,4 +218,3 @@
   </script>
 </body>
 </html>
-

@@ -44,32 +44,27 @@
       letter-spacing: 2px;
     }
 
-    .info-box {
+    .info-box, .info-box-lineup {
       display: block;
+      width: 90%;
+      max-width: 600px;
+      margin: 40px auto;
       padding: 15px 25px;
       border-radius: 10px;
-      margin-top: 40px;
-      margin-bottom: 40px;
     }
 
-    .info-box p {
+    .info-box p, .info-box-lineup p {
       font-size: 1.1rem;
-      margin: 5px 0;
+      margin: 10px 0;
       line-height: 1.5;
-      white-space: nowrap;
-    }
-
-    .info-box-lineup {
-      display: block;
-      margin-top: 40px;
-      margin-bottom: 40px;
     }
 
     .info-box-lineup p {
       font-family: 'Orbitron', sans-serif;
       font-size: 1.5rem;
       letter-spacing: 2px;
-      white-space: normal;
+      margin-top: 40px;
+      margin-bottom: 40px;
     }
 
     form {
@@ -80,6 +75,8 @@
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(255,255,255,0.2);
+      width: 90%;
+      max-width: 500px;
     }
 
     label {
@@ -130,16 +127,16 @@
     }
 
     footer {
-      margin-top: 60px;
+      margin-top: 40px;
       font-size: 1.8rem;
       opacity: 0.9;
-      margin-bottom: 40px;
+      padding-bottom: 60px; /* más espacio para que no se tape con navegador */
     }
 
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       h2 { font-size: 1.5rem; }
-      .info-box p { font-size: 1rem; white-space: normal; }
+      .info-box p, .info-box-lineup p { font-size: 1rem; }
       .info-box-lineup p { font-size: 1.2rem; }
       footer { font-size: 1.5rem; }
     }
@@ -216,18 +213,31 @@
       e.preventDefault();
       const cantidad = tickets.value;
       const precio = precios[cantidad];
-      const formData = new FormData(form);
 
-      fetch(form.action, { method: form.method, body: formData })
-        .then(response => {
-          if (response.ok) {
-            if (precio) window.location.href = precio.link;
-          } else {
-            alert('Error al enviar el formulario.');
-          }
-        })
-        .catch(() => alert('Error al enviar el formulario.'));
+      if (!cantidad) {
+        alert('Seleccioná la cantidad de entradas.');
+        return;
+      }
+
+      const formData = new FormData(form);
+      formData.append('_replyto', form.email.value); // obligatorio para Formspree
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        mode: 'cors',
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          if (precio) window.location.href = precio.link;
+        } else {
+          alert('Error al enviar el formulario.');
+        }
+      })
+      .catch(() => alert('Error al enviar el formulario.'));
     });
   </script>
 </body>
 </html>
+

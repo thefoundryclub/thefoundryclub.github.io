@@ -18,7 +18,6 @@
       font-family: 'Montserrat', sans-serif;
       margin: 0;
       padding: 0;
-      padding-bottom: 120px; /* espacio extra al final */
       animation: flash 8s infinite ease-in-out;
     }
 
@@ -62,6 +61,7 @@
     }
 
     .info-box-lineup {
+      display: block;
       text-align: center;
       margin-top: 20px;
       margin-bottom: 20px;
@@ -73,7 +73,6 @@
       letter-spacing: 2px;
       margin: 5px 0;
       line-height: 1.5;
-      white-space: normal;
     }
 
     form {
@@ -137,6 +136,7 @@
       margin-top: 60px;
       font-size: 1.8rem;
       opacity: 0.9;
+      padding-bottom: 40px; /* más espacio en el móvil */
     }
 
     @media (max-width: 600px) {
@@ -157,12 +157,12 @@
     <p>📍 San Andrés, San Martín</p>
     <p>(a 2 cuadras del túnel)</p>
     <p>🗓️ Viernes 24 de Octubre</p>
-    <p>🕚 23:00 a 05:00 hs</p>
-    <p>(Ingreso hasta la 1:00 AM)</p>
+    <p>🕚 23:00 a 05:00 hs (Ingreso hasta la 1:00 AM)</p>
   </div>
 
   <div class="info-box info-box-lineup">
-    <p><strong>LINE UP:</strong> F.I.E.R.A. (live) · DIEGO AMARO · ENEB</p>
+    <p><strong>LINE UP:</strong> F.I.E.R.A. (live) ·</p>
+    <p>DIEGO AMARO · ENEB</p>
   </div>
 
   <form id="ticketForm" action="https://formspree.io/f/xdkwblbq" method="POST">
@@ -170,7 +170,7 @@
     <input type="text" id="name" name="name" required>
 
     <label for="email">Correo electrónico:</label>
-    <input type="email" id="email" name="email" required>
+    <input type="email" id="email" name="_replyto" required>
 
     <label for="tickets">Cantidad de entradas:</label>
     <select id="tickets" name="tickets" required>
@@ -236,4 +236,3 @@
   </script>
 </body>
 </html>
-

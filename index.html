@@ -148,9 +148,8 @@
       const cantidad = parseInt(cantidadSelect.value);
       const total = cantidad * precioEntrada;
 
-      // Abrir link de Mercado Pago en nueva pestaña
-      // REEMPLAZAR TULINKMP por tu link de Mercado Pago
-      const mpLink = `https://link.mercadopago.com.ar/TULINKMP?amount=${total}`;
+      // Abrir link de Mercado Pago con monto dinámico
+      const mpLink = `https://mpago.la/2g9qpGd?amount=${total}`;
       window.open(mpLink, '_blank');
 
       // Enviar datos a Formspree vía AJAX
@@ -175,4 +174,5 @@
   </script>
 </body>
 </html>
+
 

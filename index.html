@@ -10,7 +10,6 @@
     body {
       margin: 0;
       padding: 0;
-      height: 100vh;
       font-family: 'Rajdhani', sans-serif;
       color: white;
       background: radial-gradient(circle at center, #000000 0%, #111111 100%);
@@ -18,20 +17,13 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      animation: flash 5s infinite ease-in-out;
-    }
-
-    @keyframes flash {
-      0%, 100% { background-color: #000; }
-      50% { background-color: #1a1a1a; box-shadow: 0 0 60px #fff3; }
+      min-height: 100vh;
     }
 
     h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 3.8rem;
+      font-size: 3.5rem;
       letter-spacing: 3px;
-      margin: 0;
       text-transform: uppercase;
       text-align: center;
     }
@@ -42,7 +34,6 @@
       margin: 10px 0 40px 0;
       color: black;
       -webkit-text-stroke: 1px white;
-      text-transform: uppercase;
       text-align: center;
     }
 
@@ -50,41 +41,40 @@
       font-size: 1.2rem;
       text-align: center;
       line-height: 1.8;
-      letter-spacing: 0.5px;
       margin-bottom: 30px;
     }
 
     form {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 12px;
+      gap: 10px;
+      width: 300px;
+      margin-bottom: 20px;
     }
 
-    select, input {
+    input, select, button {
       padding: 10px;
-      border-radius: 5px;
-      border: none;
-      width: 260px;
-      text-align: center;
-      font-family: 'Rajdhani', sans-serif;
       font-size: 1rem;
+      border-radius: 4px;
+      border: none;
+      outline: none;
+      font-family: 'Rajdhani', sans-serif;
     }
 
-    .nombreInput {
-      display: block;
-      width: 260px;
-      margin-top: 6px;
-    }
-
-    #total {
-      font-size: 1.2rem;
+    button {
+      background-color: white;
+      color: black;
       font-weight: bold;
-      margin-top: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #999;
     }
 
     .button {
-      margin-top: 20px;
+      margin: 12px;
       padding: 14px 30px;
       background-color: white;
       color: black;
@@ -94,6 +84,8 @@
       cursor: pointer;
       text-decoration: none;
       transition: 0.3s;
+      font-family: 'Rajdhani', sans-serif;
+      text-align: center;
     }
 
     .button:hover {
@@ -104,60 +96,4 @@
       h1 { font-size: 2.5rem; }
       h2 { font-size: 1.3rem; }
       .info { font-size: 1rem; }
-    }
-  </style>
-</head>
-<body>
-  <h1>THE FOUNDRY CLUB</h1>
-  <h2>by Fierro Records</h2>
-
-  <div class="info">
-    <p>📍 San Andrés, San Martín (Conurbano Bonaerense)</p>
-    <p>🗓 Viernes 24 de Octubre | ⏰ 23:00 a 05:00</p>
-    <p>🎵 Line Up: F.I.E.R.A. (Live) | Diego Amaro | ENEB</p>
-  </div>
-
-  <form id="compraForm" onsubmit="redirigirPago(event)">
-    <select id="cantidadEntradas" required>
-      <option value="">Cantidad de entradas</option>
-      ${[...Array(10)].map((_, i) => `<option value="${i+1}">${i+1}</option>`).join('')}
-    </select>
-
-    <div id="nombresContainer"></div>
-    <div id="total">Total: $0</div>
-
-    <button class="button" type="submit">COMPRAR ENTRADA</button>
-  </form>
-
-  <script>
-    const cantidadSelect = document.getElementById('cantidadEntradas');
-    const nombresContainer = document.getElementById('nombresContainer');
-    const totalText = document.getElementById('total');
-    const PRECIO = 6500;
-
-    cantidadSelect.addEventListener('change', () => {
-      const cantidad = parseInt(cantidadSelect.value);
-      nombresContainer.innerHTML = '';
-      totalText.textContent = `Total: $${cantidad * PRECIO}`;
-      
-      for (let i = 1; i <= cantidad; i++) {
-        const input = document.createElement('input');
-        input.classList.add('nombreInput');
-        input.placeholder = `Nombre del asistente ${i}`;
-        input.required = true;
-        nombresContainer.appendChild(input);
-      }
-    });
-
-    function redirigirPago(event) {
-      event.preventDefault();
-      const cantidad = parseInt(cantidadSelect.value);
-      if (!cantidad) return alert('Seleccioná la cantidad de entradas.');
-      const total = cantidad * PRECIO;
-      alert(`Total a pagar: $${total}. Te redirigimos a Mercado Pago.`);
-      window.open('https://link.mercadopago.com.ar/TULINKAQUI', '_blank');
-    }
-  </script>
-</body>
-</html>
 

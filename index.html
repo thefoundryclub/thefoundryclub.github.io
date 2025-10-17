@@ -5,32 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Foundry Club - Fierro Records</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Montserrat:wght@400;600&display=swap');
+    /* Fuentes */
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rajdhani:wght@400;600&display=swap');
 
+    /* Fondo con flash sutil */
     body {
       margin: 0;
       padding: 0;
       height: 100vh;
+      font-family: 'Rajdhani', sans-serif;
+      color: white;
+      background: radial-gradient(circle at center, #000000 0%, #0a0a0a 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background-color: #000;
-      color: white;
       overflow: hidden;
-      position: relative;
-      animation: flash 6s infinite ease-in-out;
+      animation: flash 5s infinite alternate ease-in-out;
     }
 
-    /* efecto de flash suave */
     @keyframes flash {
-      0%, 100% { background-color: #000; }
+      0% { background-color: #000; }
       50% { background-color: #1a1a1a; }
+      100% { background-color: #000; }
     }
 
+    /* Títulos principales */
     h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 4.5rem;
+      font-size: 4rem;
       letter-spacing: 3px;
       margin: 0;
       text-transform: uppercase;
@@ -39,45 +42,43 @@
     h2 {
       font-family: 'Orbitron', sans-serif;
       font-size: 2rem;
-      margin: 10px 0 50px 0;
+      margin: 10px 0 40px 0;
       color: black;
       -webkit-text-stroke: 1px white;
       text-transform: uppercase;
     }
 
+    /* Información del evento */
     .info {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Rajdhani', sans-serif;
       font-size: 1.4rem;
       text-align: center;
       line-height: 1.8;
-      color: #e6e6e6;
-      opacity: 0;
-      animation: fadeIn 2s ease forwards 1.5s;
+      letter-spacing: 0.5px;
+      animation: fadeIn 3s ease-in-out;
     }
 
     @keyframes fadeIn {
-      to { opacity: 1; }
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
+    /* Botón de compra */
     .button {
-      margin-top: 50px;
-      padding: 16px 34px;
+      margin-top: 40px;
+      padding: 14px 30px;
       background-color: white;
       color: black;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 600;
+      font-weight: bold;
       border: none;
-      border-radius: 6px;
+      border-radius: 4px;
       cursor: pointer;
       text-decoration: none;
-      transition: all 0.3s ease;
-      opacity: 0;
-      animation: fadeIn 2s ease forwards 2.5s;
+      transition: 0.3s;
     }
 
     .button:hover {
       background-color: #999;
-      transform: scale(1.05);
     }
   </style>
 </head>
@@ -94,4 +95,5 @@
   <a class="button" href="https://link.mercadopago.com.ar/TULINKAQUI" target="_blank">COMPRAR ENTRADA</a>
 </body>
 </html>
+
 

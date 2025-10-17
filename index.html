@@ -61,6 +61,10 @@
       font-family: 'Rajdhani', sans-serif;
     }
 
+    input {
+      margin-bottom: 10px; /* más separación entre nombres de asistentes */
+    }
+
     button {
       background-color: white;
       color: black;
@@ -94,7 +98,7 @@
 
     .total {
       font-weight: bold;
-      margin: 5px 0;
+      margin: 10px 0;
       text-align: center;
     }
 
@@ -151,7 +155,7 @@
     const cantidadSelect = document.getElementById('cantidad');
     const asistentesDiv = document.getElementById('asistentes');
     const totalDiv = document.getElementById('total');
-    const precioEntrada = 6500;
+    const precioEntrada = 7000;
 
     cantidadSelect.addEventListener('change', () => {
       asistentesDiv.innerHTML = '';
@@ -160,7 +164,7 @@
       const cantidad = parseInt(cantidadSelect.value);
       if (!cantidad) return;
 
-      totalDiv.textContent = `Monto total: $${cantidad * precioEntrada}`;
+      totalDiv.textContent = `${cantidad} x $${precioEntrada} = Monto total: $${cantidad * precioEntrada}`;
 
       for (let i = 1; i <= cantidad; i++) {
         const input = document.createElement('input');

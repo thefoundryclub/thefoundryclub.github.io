@@ -8,64 +8,77 @@
     /* Fuentes */
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Rajdhani:wght@400;600&display=swap');
 
-    /* Fondo con flash sutil */
+    /* Fondo animado */
     body {
       margin: 0;
       padding: 0;
       height: 100vh;
       font-family: 'Rajdhani', sans-serif;
       color: white;
-      background: radial-gradient(circle at center, #000000 0%, #0a0a0a 100%);
+      background: radial-gradient(circle at center, #000000 0%, #111111 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      animation: flash 5s infinite alternate ease-in-out;
+      animation: flash 4s infinite ease-in-out;
     }
 
     @keyframes flash {
-      0% { background-color: #000; }
-      50% { background-color: #1a1a1a; }
-      100% { background-color: #000; }
+      0%, 100% { background-color: #000; box-shadow: 0 0 20px #000 inset; }
+      50% { background-color: #222; box-shadow: 0 0 60px #fff1 inset; }
     }
 
-    /* Títulos principales */
+    /* Títulos */
     h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 4rem;
+      font-size: 3.8rem;
       letter-spacing: 3px;
       margin: 0;
       text-transform: uppercase;
+      text-align: center;
     }
 
     h2 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 2rem;
+      font-size: 1.8rem;
       margin: 10px 0 40px 0;
       color: black;
       -webkit-text-stroke: 1px white;
       text-transform: uppercase;
+      text-align: center;
     }
 
-    /* Información del evento */
+    /* Info */
     .info {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       text-align: center;
       line-height: 1.8;
       letter-spacing: 0.5px;
-      animation: fadeIn 3s ease-in-out;
+      margin-bottom: 30px;
     }
 
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(10px); }
-      100% { opacity: 1; transform: translateY(0); }
+    /* Formulario */
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
     }
 
-    /* Botón de compra */
+    input, textarea {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      width: 260px;
+      max-width: 80%;
+      text-align: center;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+    }
+
     .button {
-      margin-top: 40px;
+      margin-top: 20px;
       padding: 14px 30px;
       background-color: white;
       color: black;
@@ -80,6 +93,13 @@
     .button:hover {
       background-color: #999;
     }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 1.3rem; }
+      .info { font-size: 1rem; }
+    }
   </style>
 </head>
 <body>
@@ -92,8 +112,11 @@
     <p>🎵 Line Up: F.I.E.R.A. (Live) | Diego Amaro | Eneb</p>
   </div>
 
-  <a class="button" href="https://link.mercadopago.com.ar/TULINKAQUI" target="_blank">COMPRAR ENTRADA</a>
+  <form action="https://link.mercadopago.com.ar/TULINKAQUI" method="get" target="_blank">
+    <input type="text" name="nombre" placeholder="Tu nombre o nombres de asistentes" required>
+    <input type="number" name="cantidad" placeholder="Cantidad de entradas" min="1" required>
+    <button class="button" type="submit">COMPRAR ENTRADA</button>
+  </form>
 </body>
 </html>
-
 

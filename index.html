@@ -44,35 +44,34 @@
       letter-spacing: 2px;
     }
 
-    .info-box, .info-box-lineup {
-      display: block;
-      width: 90%;
-      max-width: 500px;
-      margin: 40px auto; /* centra y separa */
+    .info-box {
+      display: inline-block;
       padding: 15px 25px;
       border-radius: 10px;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      text-align: center;
     }
 
     .info-box p {
       font-size: 1.1rem;
       margin: 5px 0;
       line-height: 1.5;
-      white-space: nowrap; /* evita que se rompa en varias líneas */
+      white-space: nowrap; /* fuerza a que cada línea quede en una sola línea */
     }
 
     .info-box-lineup p {
       font-family: 'Orbitron', sans-serif;
       font-size: 1.5rem;
       letter-spacing: 2px;
-      margin: 20px 0; /* espacio arriba y abajo reducido */
+      margin: 20px 0;
+      text-align: center;
     }
 
     form {
-      margin: 30px auto;
-      display: block;
+      margin-top: 30px;
+      display: inline-block;
       text-align: left;
-      width: 90%;
-      max-width: 500px;
       background: rgba(0, 0, 0, 0.6);
       padding: 20px;
       border-radius: 10px;
@@ -128,18 +127,16 @@
 
     footer {
       margin-top: 60px;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       opacity: 0.9;
-      padding-bottom: 40px; /* espacio para que no se tape en móvil */
     }
 
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       h2 { font-size: 1.5rem; }
-      .info-box p { font-size: 1rem; white-space: normal; }
+      .info-box p { font-size: 1rem; white-space: normal; } /* permite que el texto se adapte en celular */
       .info-box-lineup p { font-size: 1.2rem; }
-      form { width: 95%; }
-      footer { margin-top: 80px; padding-bottom: 60px; }
+      footer { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -155,8 +152,7 @@
   </div>
 
   <div class="info-box info-box-lineup">
-    <p><strong>LINE UP:</strong> F.I.E.R.A. (live) · </p>
-    </p>DIEGO AMARO · ENEB</p>
+    <p><strong>LINE UP:</strong> F.I.E.R.A. (live) · DIEGO AMARO · ENEB</p>
   </div>
 
   <form id="ticketForm" action="https://formspree.io/f/xdkwblbq" method="POST">
@@ -230,4 +226,3 @@
   </script>
 </body>
 </html>
-

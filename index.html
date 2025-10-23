@@ -42,10 +42,7 @@
   <p><strong>LINE UP:</strong> F.I.E.R.A. (live) · DIEGO AMARO · ENEB</p>
 </div>
 
-<!-- iframe invisible -->
-<iframe name="iframe_invisible" style="display:none;"></iframe>
-
-<form id="ticketForm" action="https://formspree.io/f/xgvnjnaj" method="POST" target="iframe_invisible">
+<form id="ticketForm" action="https://formspree.io/f/xgvnjnaj" method="POST">
   <label for="name">Nombre y Apellido del comprador:</label>
   <input type="text" id="name" name="name" required>
 
@@ -77,6 +74,7 @@
 <script>
 const tickets = document.getElementById('tickets');
 const detalle = document.getElementById('detalle');
+const form = document.getElementById('ticketForm');
 const precios = {
   1: 'https://mpago.li/13vaJDi',
   2: 'https://mpago.li/25NrBGT',
@@ -92,15 +90,30 @@ tickets.addEventListener('change', () => {
   } else { detalle.innerHTML=''; }
 });
 
-document.getElementById('ticketForm').addEventListener('submit', (e)=>{
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const cantidad = tickets.value;
   if(!cantidad){ alert('Seleccioná la cantidad de entradas'); return; }
-  e.target.submit(); // enviar a Formspree vía iframe
-  window.location.href = precios[cantidad]; // redirigir a Mercado Pago
+
+  const formData = new FormData(form);
+
+  try {
+    const res = await fetch(form.action, {
+      method: "POST",
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (res.ok) {
+      window.location.href = precios[cantidad]; // redirige cuando el envío se confirma
+    } else {
+      alert("Error al enviar el formulario. Intentalo nuevamente.");
+    }
+  } catch (err) {
+    alert("Error de conexión. Revisá tu red e intentalo otra vez.");
+  }
 });
 </script>
 
 </body>
 </html>
-

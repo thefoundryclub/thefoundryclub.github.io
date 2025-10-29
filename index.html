@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+<!-- 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>THE FOUNDRY CLUB - Fierro Records</title>
@@ -21,11 +21,9 @@
   .total { font-weight: bold; margin-top: 15px; font-size: 1.2rem; text-align: center; }
   .warning { margin-top: 20px; font-size: 0.95rem; color: #ff8080; text-align: center; line-height: 1.4; }
   footer { margin-top: 60px; font-size: 1.8rem; opacity: 0.9; }
-  @media (max-width: 600px) { h1 { font-size: 2rem; } h2 { font-size: 1.5rem; } .info-box p { font-size: 1rem; white-space: normal; } .info-box-lineup p { font-size: 1.2rem; white-space: normal; } footer { font-size: 1.5rem; } }
 </style>
-</head>
-<body>
 
+<body>
 <h1>THE FOUNDRY CLUB</h1>
 <h2>by Fierro Records</h2>
 
@@ -42,78 +40,18 @@
   <p><strong>LINE UP:</strong> F.I.E.R.A. (live) · DIEGO AMARO · ENEB</p>
 </div>
 
-<form id="ticketForm" action="https://formspree.io/f/xgvnjnaj" method="POST">
-  <label for="name">Nombre y Apellido del comprador:</label>
-  <input type="text" id="name" name="name" required>
-
-  <label for="email">Correo electrónico:</label>
-  <input type="email" id="email" name="email" required>
-
-  <label for="tickets">Cantidad de entradas:</label>
-  <select id="tickets" name="tickets" required>
-    <option value="" disabled selected>Seleccionar</option>
-    <option value="1">1 entrada</option>
-    <option value="2">2 entradas</option>
-    <option value="3">3 entradas</option>
-    <option value="4">4 entradas</option>
-  </select>
-
-  <div class="total" id="detalle"></div>
-  <input type="hidden" name="_subject" value="Nueva compra de entrada - The Foundry Club">
-  <button type="submit">Comprar Entradas</button>
-  <p class="warning">
-    ⚠️ El ingreso al evento será válido solo una vez confirmada la transferencia por Mercado Pago.<br>
-    📍 La dirección exacta se enviará por correo una vez abonada la entrada.
-  </p>
+<form id="ticketForm">
+  <label>Nombre y Apellido del comprador:</label>
+  <input type="text">
+  <label>Correo electrónico:</label>
+  <input type="email">
 </form>
 
 <footer>
-  <p>Instagram: <a href="https://instagram.com/fierrorecords" target="_blank" style="color:white; text-decoration:none;">@fierrorecords</a></p>
+  <p>Instagram: @fierrorecords</p>
 </footer>
 
-<script>
-const tickets = document.getElementById('tickets');
-const detalle = document.getElementById('detalle');
-const form = document.getElementById('ticketForm');
-const precios = {
-  1: 'https://mpago.li/13vaJDi',
-  2: 'https://mpago.li/25NrBGT',
-  3: 'https://mpago.li/1BBufaA',
-  4: 'https://mpago.li/1s7nqB2'
-};
-
-tickets.addEventListener('change', () => {
-  const cantidad = tickets.value;
-  if(cantidad) {
-    const total = 7000 * cantidad;
-    detalle.innerHTML = `Cantidad de entradas: ${cantidad} × $7000<br>Monto total: $${total}`;
-  } else { detalle.innerHTML=''; }
-});
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const cantidad = tickets.value;
-  if(!cantidad){ alert('Seleccioná la cantidad de entradas'); return; }
-
-  const formData = new FormData(form);
-
-  try {
-    const res = await fetch(form.action, {
-      method: "POST",
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    });
-
-    if (res.ok) {
-      window.location.href = precios[cantidad]; // redirige cuando el envío se confirma
-    } else {
-      alert("Error al enviar el formulario. Intentalo nuevamente.");
-    }
-  } catch (err) {
-    alert("Error de conexión. Revisá tu red e intentalo otra vez.");
-  }
-});
-</script>
-
 </body>
+-->
 </html>
+
